@@ -20,11 +20,13 @@ const state = {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, initializing app...');
   initCallerInfoForm();
   initNavigation();
   initLocationForm();
   initPriorityButtons();
   initDispatchButtons();
+  console.log('App initialized successfully');
 });
 
 // Caller Info Form
@@ -58,11 +60,34 @@ function initNavigation() {
   const subNavItems = document.querySelectorAll('.sub-nav-item');
   const contentArea = document.getElementById('contentArea');
 
+  console.log('Initializing navigation...');
+  console.log('Found nav buttons:', navButtons.length);
+  console.log('Found sub-nav items:', subNavItems.length);
+  console.log('Sub-nav container:', subNavContainer);
+  console.log('Content area:', contentArea);
+
+  if (!navButtons.length) {
+    console.error('No navigation buttons found!');
+    return;
+  }
+
+  if (!subNavContainer) {
+    console.error('Sub-nav container not found!');
+    return;
+  }
+
+  if (!contentArea) {
+    console.error('Content area not found!');
+    return;
+  }
+
   // Handle main navigation buttons
   navButtons.forEach(function(button) {
     button.addEventListener('click', function() {
       const codeId = this.getAttribute('data-code');
       const type = this.getAttribute('data-type');
+      
+      console.log('Button clicked:', codeId, type);
       
       // Remove active from all nav buttons
       navButtons.forEach(function(btn) {
@@ -78,6 +103,7 @@ function initNavigation() {
       
       if (type === 'nav') {
         // Green button - show sub-nav
+        console.log('Showing sub-nav for:', codeId);
         subNavContainer.style.display = 'block';
         
         // Remove active from sub-nav items
@@ -89,6 +115,7 @@ function initNavigation() {
         showDefaultContent(codeId);
       } else if (type === 'direct') {
         // Red button - hide sub-nav and show content directly
+        console.log('Showing direct content for:', codeId);
         subNavContainer.style.display = 'none';
         showDirectContent(codeId);
       }
@@ -99,6 +126,8 @@ function initNavigation() {
   subNavItems.forEach(function(item) {
     item.addEventListener('click', function() {
       const subNavId = this.getAttribute('data-subnav');
+      
+      console.log('Sub-nav item clicked:', subNavId);
       
       // Remove active from all sub-nav items
       subNavItems.forEach(function(subItem) {
@@ -115,6 +144,8 @@ function initNavigation() {
       showSubNavContent(state.navigation.activeNav, subNavId);
     });
   });
+
+  console.log('Navigation initialized successfully');
 }
 
 // Show default content when a green button is clicked

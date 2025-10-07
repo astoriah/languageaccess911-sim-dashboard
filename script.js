@@ -512,10 +512,24 @@ function initLocationForm() {
 // Priority Buttons
 function initPriorityButtons() {
   const priorityButtons = document.querySelectorAll('.priority-btn');
+  const mapIframe = document.getElementById('mapIframe');
+
+  // Map URLs for different priority levels
+  const mapUrls = {
+    'default': 'https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F',
+    'priority1': 'https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F',
+    'priority2': 'https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F',
+    'priority3': 'https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F'
+  };
+
+  console.log('Initializing priority buttons...');
 
   priorityButtons.forEach(function(button) {
     button.addEventListener('click', function() {
       const priorityLevel = parseInt(this.getAttribute('data-priority'));
+      const mapType = this.getAttribute('data-map');
+      
+      console.log('Priority button clicked:', priorityLevel, mapType);
       
       // Update state
       state.priority = priorityLevel;
@@ -528,8 +542,16 @@ function initPriorityButtons() {
       
       this.classList.add('active');
       this.setAttribute('aria-pressed', 'true');
+      
+      // Update map iframe
+      if (mapIframe && mapUrls[mapType]) {
+        mapIframe.src = mapUrls[mapType];
+        console.log('Map updated to:', mapType);
+      }
     });
   });
+
+  console.log('Priority buttons initialized');
 }
 
 // Dispatch Buttons
@@ -589,6 +611,12 @@ function resetSimulation() {
   });
   document.querySelector('.priority-btn[data-priority="1"]').classList.add('active');
   document.querySelector('.priority-btn[data-priority="1"]').setAttribute('aria-pressed', 'true');
+  
+  // Reset map iframe
+  const mapIframe = document.getElementById('mapIframe');
+  if (mapIframe) {
+    mapIframe.src = 'https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F';
+  }
   
   // Reset navigation
   const navButtons = document.querySelectorAll('.code-btn');

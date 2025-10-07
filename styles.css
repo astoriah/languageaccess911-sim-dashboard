@@ -397,67 +397,53 @@ body {
 
 /* Map Container */
 .map-container {
+  position: relative;
   width: 50%;
   margin-left: 20px;
   text-align: center;
-}
-
-.map-placeholder {
-  background-color: white;
-  border: 1px solid rgba(190, 190, 190, 1);
-  height: 204px;
+  overflow: hidden;
+  background-color: rgba(217, 217, 217, 1);
   border-radius: 5px;
 }
 
-.map-image {
+.map-iframe {
   width: 100%;
-  margin-top: 30px;
-  border-radius: 5px;
-  aspect-ratio: 1.22;
-  object-fit: contain;
+  height: 480px;
+  border: none;
+  display: block;
 }
 
 .priority-group {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  width: 239px;
-  max-width: 100%;
-  gap: 13px;
-  margin-top: 19px;
-  font-size: 20px;
-}
-
-.priority-label {
-  background-color: rgba(6, 82, 181, 1);
-  color: white;
-  font-weight: 600;
-  display: flex;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
   border-radius: 5px;
-  flex: 1;
 }
 
 .priority-btn {
-  border: 1px solid rgba(190, 190, 190, 1);
-  background-color: white;
-  color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 20px;
-  border-radius: 5px;
   width: 50px;
   height: 50px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  border-radius: 5px;
+  border: 2px solid rgba(6, 82, 181, 1);
+  background-color: white;
   font-size: 20px;
-  flex: 1;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .priority-btn:hover {
-  background-color: #f9fafb;
+  background-color: rgba(6, 82, 181, 0.2);
 }
 
 .priority-btn.active {

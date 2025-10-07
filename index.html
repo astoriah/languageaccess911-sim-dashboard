@@ -156,17 +156,20 @@
 
                 <!-- Map and Priority -->
                 <div class="map-container">
-                  <div class="map-placeholder" role="img" aria-label="Map placeholder"></div>
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/311df0746ea2777efb56f6d33a43da0a894f714e?placeholderIfAbsent=true"
-                    class="map-image"
-                    alt="Location map"
-                  />
+                  <iframe 
+                    id="mapIframe"
+                    src="https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F" 
+                    width="640" 
+                    height="480"
+                    class="map-iframe"
+                    frameborder="0"
+                    allowfullscreen
+                  ></iframe>
                   <div class="priority-group" role="group" aria-label="Priority selection">
-                    <div class="priority-label">P</div>
-                    <button class="priority-btn active" data-priority="1" aria-pressed="true">1</button>
-                    <button class="priority-btn" data-priority="2" aria-pressed="false">2</button>
-                    <button class="priority-btn" data-priority="3" aria-pressed="false">3</button>
+                    <button class="priority-btn" data-priority="0" data-map="default" aria-pressed="false">P</button>
+                    <button class="priority-btn active" data-priority="1" data-map="priority1" aria-pressed="true">1</button>
+                    <button class="priority-btn" data-priority="2" data-map="priority2" aria-pressed="false">2</button>
+                    <button class="priority-btn" data-priority="3" data-map="priority3" aria-pressed="false">3</button>
                   </div>
                 </div>
               </div>

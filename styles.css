@@ -25,28 +25,29 @@ body {
   display: flex;
   width: 100%;
   align-items: stretch;
-  gap: 39px;
+  gap: 20px;
   font-size: 20px;
   color: #000;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .form-group-inline {
   display: flex;
   width: 100%;
-  gap: 39px;
-  flex-wrap: wrap;
+  gap: 20px;
+  flex-wrap: nowrap;
 }
 
 .label-container {
-  flex-grow: 1;
+  flex-shrink: 0;
   margin: auto 0;
+  white-space: nowrap;
 }
 
 .input-row {
   display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 12px;
+  flex-wrap: nowrap;
   flex-grow: 1;
   flex-shrink: 1;
   align-items: center;
@@ -55,31 +56,38 @@ body {
 .form-input {
   background-color: white;
   border: 1px solid rgba(190, 190, 190, 1);
-  width: 271px;
+  width: 180px;
+  min-width: 150px;
   max-width: 100%;
   height: 50px;
   border-radius: 5px;
   padding: 0 12px;
   font-size: 20px;
+  flex-shrink: 1;
 }
 
 .form-select {
   background-color: white;
   border: 1px solid rgba(190, 190, 190, 1);
-  width: 207px;
+  width: 140px;
+  min-width: 120px;
   height: 50px;
   border-radius: 5px;
   padding: 0 12px;
   font-size: 20px;
+  flex-shrink: 1;
 }
 
 .idc-input {
-  width: 138px;
+  width: 100px;
+  min-width: 80px;
 }
 
 .inline-label {
   margin: auto 0;
   font-size: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Content Wrapper */
@@ -527,9 +535,18 @@ body {
     margin-top: 0;
   }
 
+  .caller-info-form {
+    flex-wrap: wrap;
+  }
+
+  .form-group-inline {
+    flex-wrap: wrap;
+  }
+
   .input-row {
     flex-direction: column;
     align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   .form-input,

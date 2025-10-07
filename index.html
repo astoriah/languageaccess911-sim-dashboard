@@ -1,24 +1,232 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>figma-layout-loom</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="figma-layout-loom" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <title>Emergency Dispatch System</title>
+    <meta name="description" content="Emergency Dispatch System Interface" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <main class="main-container">
+      <!-- Caller Info Form -->
+      <section class="caller-info-section">
+        <form class="caller-info-form" id="callerInfoForm">
+          <div class="form-group-inline">
+            <div class="label-container">
+              <label for="caller-name">Caller Name</label>
+            </div>
+            <div class="input-row">
+              <input
+                id="caller-name"
+                type="text"
+                class="form-input"
+                aria-label="Caller Name"
+              />
+              <label for="caller-number" class="inline-label">Caller Number</label>
+              <input
+                id="caller-number"
+                type="tel"
+                class="form-input"
+                aria-label="Caller Number"
+              />
+              <label for="type" class="inline-label">Type</label>
+              <select
+                id="type"
+                class="form-select"
+                aria-label="Call Type"
+              >
+                <option value="">Select Type</option>
+                <option value="emergency">Emergency</option>
+                <option value="non-emergency">Non-Emergency</option>
+                <option value="medical">Medical</option>
+                <option value="fire">Fire</option>
+                <option value="police">Police</option>
+              </select>
+              <label for="idc-code" class="inline-label">IDC Code</label>
+              <input
+                id="idc-code"
+                type="text"
+                class="form-input idc-input"
+                aria-label="IDC Code"
+              />
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <div class="content-wrapper">
+        <div class="layout-container">
+          <!-- Emergency Codes Panel -->
+          <aside class="emergency-panel">
+            <div class="emergency-codes-grid">
+              <!-- Row 1 -->
+              <div class="code-row">
+                <button class="code-btn emergency-btn" data-code="cardiac-arrest">Cardiac Arrest</button>
+                <button class="code-btn emergency-btn" data-code="choking">Choking</button>
+                <button class="code-btn emergency-btn" data-code="head-neck">Head/Neck</button>
+              </div>
+              <!-- Row 2 -->
+              <div class="code-row">
+                <button class="code-btn emergency-btn" data-code="mental-emotion">Mental/Emotion</button>
+                <button class="code-btn emergency-btn" data-code="od-poisoning">O.D/Poisoning</button>
+                <button class="code-btn emergency-btn" data-code="pregnancy-childbirth">Pregnancy/Childbirth</button>
+              </div>
+              <!-- Row 3 -->
+              <div class="code-row">
+                <button class="code-btn emergency-btn" data-code="stroke">Stroke</button>
+                <button class="code-btn emergency-btn" data-code="seizures">Seizures</button>
+                <button class="code-btn emergency-btn" data-code="pediatrics">Pediatrics</button>
+              </div>
+              <!-- CPR Row -->
+              <div class="code-row">
+                <button class="code-btn cpr-btn" data-code="cpr-adult-aed">CPR Adult/AED PAI</button>
+                <button class="code-btn cpr-btn" data-code="cpr-child">CPR Child 1-8</button>
+                <button class="code-btn cpr-btn" data-code="cpr-infant">CPR Infant/Newborn</button>
+              </div>
+            </div>
+
+            <div class="divider-thick"></div>
+
+            <section class="panel-section">
+              <h3>Medic Response</h3>
+            </section>
+
+            <div class="divider-thin"></div>
+
+            <div class="panel-section">
+              <div class="section-item">BLS Red Response</div>
+              <div class="section-item">BLS Yellow Response</div>
+            </div>
+
+            <div class="divider-thin"></div>
+
+            <div class="panel-section">
+              <div class="section-item">Vital Points</div>
+              <div class="section-item">Pre-arrival Instructions</div>
+            </div>
+
+            <div class="divider-thick"></div>
+
+            <article class="protocol-article">
+              <h4 class="protocol-title">6M1 - Unconscious or not breathing</h4>
+              <div class="protocol-content">
+                <strong>Medic:</strong><br />
+                <strong>If unsure about consciousness, use</strong><br />
+                <strong>questions below to probe further:</strong>
+                <ul class="protocol-list">
+                  <li>Does the patient respond to you?</li>
+                </ul>
+                • Respond to your voice (can they<br />
+                answer your questions).<br />
+                • Respond when you try to wake<br />
+                them up.<br />
+                <strong>If unsure about breathing normally,</strong><br />
+                <strong>inquire further:</strong><br />
+                • Does the patient's chest rise and fall?<br />
+                • Describe the patient's breathing.
+              </div>
+              <div class="protocol-arrow">▼</div>
+            </article>
+          </aside>
+
+          <!-- Location Form and Dispatch Buttons -->
+          <div class="main-content">
+            <div class="location-wrapper">
+              <div class="location-row">
+                <!-- Location Form -->
+                <div class="location-form-container">
+                  <form class="location-form" id="locationForm">
+                    <fieldset>
+                      <legend>Location</legend>
+                      <input
+                        type="text"
+                        id="street-address"
+                        class="location-input"
+                        placeholder="Enter street address"
+                        aria-label="Street address"
+                      />
+                      <div class="input-label">Street address</div>
+
+                      <div class="apt-search-row">
+                        <input
+                          type="text"
+                          id="apt-suite"
+                          class="apt-input"
+                          placeholder="Apt, suite, etc."
+                          aria-label="Apartment, suite, etc."
+                        />
+                        <button type="button" class="search-btn" id="searchBtn">Search</button>
+                      </div>
+
+                      <div class="input-label">Apt. suite, etc.</div>
+
+                      <label for="comments" class="comments-label">Comments</label>
+                      <textarea
+                        id="comments"
+                        class="comments-textarea"
+                        placeholder="Enter additional comments or notes..."
+                        aria-label="Comments"
+                      ></textarea>
+                    </fieldset>
+                  </form>
+                </div>
+
+                <!-- Map and Priority -->
+                <div class="map-container">
+                  <div class="map-placeholder" role="img" aria-label="Map placeholder"></div>
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/311df0746ea2777efb56f6d33a43da0a894f714e?placeholderIfAbsent=true"
+                    class="map-image"
+                    alt="Location map"
+                  />
+                  <div class="priority-group" role="group" aria-label="Priority selection">
+                    <div class="priority-label">P</div>
+                    <button class="priority-btn active" data-priority="1" aria-pressed="true">1</button>
+                    <button class="priority-btn" data-priority="2" aria-pressed="false">2</button>
+                    <button class="priority-btn" data-priority="3" aria-pressed="false">3</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dispatch Buttons -->
+            <section class="dispatch-section">
+              <div class="dispatch-row-1">
+                <button class="dispatch-btn primary-btn" data-dispatch="sheriff">Sheriff</button>
+                <button class="dispatch-btn primary-btn" data-dispatch="police-i3">Police I3</button>
+                <button class="dispatch-btn primary-btn" data-dispatch="fire-i3">Fire I3</button>
+                <button class="dispatch-btn primary-btn" data-dispatch="lang-access">Lang. Access</button>
+              </div>
+
+              <div class="dispatch-grid">
+                <div class="dispatch-left">
+                  <div class="dispatch-row">
+                    <button class="dispatch-btn secondary-btn" data-dispatch="security">Security</button>
+                    <button class="dispatch-btn secondary-btn" data-dispatch="utility">Utility</button>
+                  </div>
+                  <div class="dispatch-row">
+                    <button class="dispatch-btn secondary-btn" data-dispatch="jail">Jail</button>
+                    <button class="dispatch-btn secondary-btn" data-dispatch="hospital">Hospital</button>
+                  </div>
+                </div>
+
+                <div class="dispatch-middle">
+                  <button class="dispatch-btn primary-btn" data-dispatch="ems-i3">EMS I3</button>
+                  <button class="dispatch-btn secondary-btn" data-dispatch="tow">Tow</button>
+                </div>
+
+                <div class="dispatch-right">
+                  <button class="dispatch-btn primary-btn" data-dispatch="non-emerg">Non Emerg</button>
+                  <button class="dispatch-btn warning-btn" data-dispatch="reset-simulation">Reset Simulation</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
   </body>
 </html>

@@ -11,13 +11,17 @@ const state = {
     aptSuite: '',
     comments: ''
   },
-  priority: 1
+  priority: 1,
+  navigation: {
+    activeNav: null,
+    activeSubNav: null
+  }
 };
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
   initCallerInfoForm();
-  initEmergencyCodes();
+  initNavigation();
   initLocationForm();
   initPriorityButtons();
   initDispatchButtons();
@@ -47,16 +51,407 @@ function initCallerInfoForm() {
   });
 }
 
-// Emergency Codes
-function initEmergencyCodes() {
-  const codeButtons = document.querySelectorAll('.code-btn');
-  
-  codeButtons.forEach(function(button) {
+// Navigation System
+function initNavigation() {
+  const navButtons = document.querySelectorAll('.code-btn');
+  const subNavContainer = document.getElementById('subNavContainer');
+  const subNavItems = document.querySelectorAll('.sub-nav-item');
+  const contentArea = document.getElementById('contentArea');
+
+  // Handle main navigation buttons
+  navButtons.forEach(function(button) {
     button.addEventListener('click', function() {
       const codeId = this.getAttribute('data-code');
-      console.log('Emergency code selected:', codeId);
+      const type = this.getAttribute('data-type');
+      
+      // Remove active from all nav buttons
+      navButtons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      
+      // Add active to clicked button
+      this.classList.add('active');
+      
+      // Update state
+      state.navigation.activeNav = codeId;
+      state.navigation.activeSubNav = null;
+      
+      if (type === 'nav') {
+        // Green button - show sub-nav
+        subNavContainer.style.display = 'block';
+        
+        // Remove active from sub-nav items
+        subNavItems.forEach(function(item) {
+          item.classList.remove('active');
+        });
+        
+        // Show default content
+        showDefaultContent(codeId);
+      } else if (type === 'direct') {
+        // Red button - hide sub-nav and show content directly
+        subNavContainer.style.display = 'none';
+        showDirectContent(codeId);
+      }
     });
   });
+
+  // Handle sub-navigation items
+  subNavItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      const subNavId = this.getAttribute('data-subnav');
+      
+      // Remove active from all sub-nav items
+      subNavItems.forEach(function(subItem) {
+        subItem.classList.remove('active');
+      });
+      
+      // Add active to clicked item
+      this.classList.add('active');
+      
+      // Update state
+      state.navigation.activeSubNav = subNavId;
+      
+      // Show content for this sub-nav
+      showSubNavContent(state.navigation.activeNav, subNavId);
+    });
+  });
+}
+
+// Show default content when a green button is clicked
+function showDefaultContent(navId) {
+  const contentArea = document.getElementById('contentArea');
+  
+  const contentMap = {
+    'cardiac': {
+      title: 'Cardiac Emergency Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Check for responsiveness and breathing<br />
+        • Look for signs of cardiac distress<br />
+        • Assess chest pain, shortness of breath<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Call for ALS backup immediately<br />
+        • Begin cardiac monitoring<br />
+        • Prepare for possible cardiac arrest`
+    },
+    'choking': {
+      title: 'Choking Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Determine if airway is completely blocked<br />
+        • Check if patient can speak or cough<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • If complete obstruction: Heimlich maneuver<br />
+        • If partial obstruction: encourage coughing<br />
+        • Prepare for advanced airway management`
+    },
+    'head-neck': {
+      title: 'Head/Neck Injury Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Check level of consciousness<br />
+        • Assess for neck pain or deformity<br />
+        • Look for signs of head trauma<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Maintain c-spine stabilization<br />
+        • Monitor for changes in mental status<br />
+        • Prepare for spinal immobilization`
+    },
+    'mental': {
+      title: 'Mental/Emotional Crisis Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Assess patient's mental state<br />
+        • Check for danger to self or others<br />
+        • Determine if psychiatric evaluation needed<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Ensure scene safety<br />
+        • Use calm, reassuring communication<br />
+        • Consider law enforcement assistance if needed`
+    },
+    'poisoning': {
+      title: 'Overdose/Poisoning Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Identify substance if possible<br />
+        • Check vital signs and consciousness<br />
+        • Look for signs of toxicity<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Contact poison control center<br />
+        • Prepare for antidote administration<br />
+        • Monitor airway and breathing closely`
+    },
+    'pregnancy': {
+      title: 'Pregnancy/Childbirth Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Determine stage of labor<br />
+        • Check for complications<br />
+        • Assess if delivery is imminent<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Prepare for delivery if needed<br />
+        • Monitor mother and baby<br />
+        • Have neonatal resuscitation equipment ready`
+    },
+    'stroke': {
+      title: 'Stroke Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Use FAST assessment (Face, Arms, Speech, Time)<br />
+        • Document time of symptom onset<br />
+        • Check blood glucose<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Rapid transport to stroke center<br />
+        • Keep patient NPO<br />
+        • Monitor vital signs closely`
+    },
+    'seizures': {
+      title: 'Seizure Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Note type and duration of seizure<br />
+        • Check for injuries from seizure<br />
+        • Assess post-ictal state<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Protect from injury during seizure<br />
+        • Maintain airway after seizure<br />
+        • Consider causes (hypoglycemia, etc.)`
+    },
+    'pediatrics': {
+      title: 'Pediatric Emergency Protocol',
+      content: `<strong>Assessment:</strong><br />
+        • Use age-appropriate assessment tools<br />
+        • Check vital signs for pediatric norms<br />
+        • Assess level of distress<br />
+        <br />
+        <strong>Actions:</strong><br />
+        • Use pediatric equipment sizing<br />
+        • Keep caregiver with child when possible<br />
+        • Adjust medication dosing for weight`
+    }
+  };
+  
+  const content = contentMap[navId] || {
+    title: 'Protocol Content',
+    content: 'Select a sub-navigation item to view specific instructions.'
+  };
+  
+  contentArea.innerHTML = `
+    <article class="protocol-article">
+      <h4 class="protocol-title">${content.title}</h4>
+      <div class="protocol-content">
+        ${content.content}
+      </div>
+    </article>
+  `;
+  
+  contentArea.scrollTop = 0;
+}
+
+// Show content for direct access (red buttons)
+function showDirectContent(navId) {
+  const contentArea = document.getElementById('contentArea');
+  
+  const contentMap = {
+    'cpr-adult': {
+      title: 'CPR Adult/AED Protocol',
+      content: `<strong>CPR for Adults (Age 8+):</strong><br />
+        <br />
+        <strong>1. Check responsiveness</strong><br />
+        • Tap shoulders and shout "Are you OK?"<br />
+        • If no response, call 911 immediately<br />
+        <br />
+        <strong>2. Check breathing</strong><br />
+        • Look for chest rise<br />
+        • Listen for breath sounds<br />
+        • If not breathing normally, begin CPR<br />
+        <br />
+        <strong>3. Hand position</strong><br />
+        • Place heel of one hand in center of chest<br />
+        • Place other hand on top<br />
+        • Interlock fingers<br />
+        <br />
+        <strong>4. Compressions</strong><br />
+        • Push hard and fast<br />
+        • At least 2 inches deep<br />
+        • 100-120 compressions per minute<br />
+        • 30 compressions, then 2 breaths<br />
+        <br />
+        <strong>5. AED Instructions</strong><br />
+        • Turn on AED<br />
+        • Follow voice prompts<br />
+        • Do not touch patient during shock<br />
+        • Resume CPR immediately after shock`
+    },
+    'cpr-child': {
+      title: 'CPR Child (1-8 years) Protocol',
+      content: `<strong>CPR for Children (Age 1-8):</strong><br />
+        <br />
+        <strong>1. Check responsiveness</strong><br />
+        • Tap shoulders gently<br />
+        • Call for help<br />
+        <br />
+        <strong>2. Check breathing</strong><br />
+        • Look, listen, feel for breathing<br />
+        • If not breathing, begin CPR<br />
+        <br />
+        <strong>3. Hand position</strong><br />
+        • Use one or two hands<br />
+        • Center of chest, between nipples<br />
+        <br />
+        <strong>4. Compressions</strong><br />
+        • About 2 inches deep (1/3 chest depth)<br />
+        • 100-120 compressions per minute<br />
+        • 30 compressions, then 2 breaths<br />
+        <br />
+        <strong>5. Breaths</strong><br />
+        • Tilt head back slightly<br />
+        • Give 2 gentle breaths<br />
+        • Watch for chest rise`
+    },
+    'cpr-infant': {
+      title: 'CPR Infant/Newborn Protocol',
+      content: `<strong>CPR for Infants (Under 1 year):</strong><br />
+        <br />
+        <strong>1. Check responsiveness</strong><br />
+        • Tap foot gently<br />
+        • Call for help immediately<br />
+        <br />
+        <strong>2. Check breathing</strong><br />
+        • Look for chest movement<br />
+        • Listen for breath sounds<br />
+        <br />
+        <strong>3. Hand position</strong><br />
+        • Use two fingers only<br />
+        • Just below nipple line<br />
+        <br />
+        <strong>4. Compressions</strong><br />
+        • About 1.5 inches deep (1/3 chest depth)<br />
+        • 100-120 compressions per minute<br />
+        • 30 compressions, then 2 breaths<br />
+        <br />
+        <strong>5. Breaths</strong><br />
+        • Cover infant's mouth and nose<br />
+        • Give 2 small puffs of air<br />
+        • Watch for chest rise<br />
+        <br />
+        <strong>Special Considerations:</strong><br />
+        • Be gentle but effective<br />
+        • Continue until help arrives<br />
+        • Do not stop unless infant responds`
+    }
+  };
+  
+  const content = contentMap[navId] || {
+    title: 'CPR Protocol',
+    content: 'CPR instructions will be displayed here.'
+  };
+  
+  contentArea.innerHTML = `
+    <article class="protocol-article">
+      <h4 class="protocol-title">${content.title}</h4>
+      <div class="protocol-content">
+        ${content.content}
+      </div>
+    </article>
+  `;
+  
+  contentArea.scrollTop = 0;
+}
+
+// Show content for sub-navigation selection
+function showSubNavContent(navId, subNavId) {
+  const contentArea = document.getElementById('contentArea');
+  
+  // Content varies based on both main nav and sub-nav
+  const title = getSubNavTitle(navId, subNavId);
+  const content = getSubNavContentDetails(navId, subNavId);
+  
+  contentArea.innerHTML = `
+    <article class="protocol-article">
+      <h4 class="protocol-title">${title}</h4>
+      <div class="protocol-content">
+        ${content}
+      </div>
+    </article>
+  `;
+  
+  contentArea.scrollTop = 0;
+}
+
+function getSubNavTitle(navId, subNavId) {
+  const navTitles = {
+    'cardiac': 'Cardiac',
+    'choking': 'Choking',
+    'head-neck': 'Head/Neck',
+    'mental': 'Mental',
+    'poisoning': 'Poisoning',
+    'pregnancy': 'Pregnancy',
+    'stroke': 'Stroke',
+    'seizures': 'Seizures',
+    'pediatrics': 'Pediatrics'
+  };
+  
+  const subNavTitles = {
+    'medic-response': 'Medic Response',
+    'bls-red': 'BLS Red Response',
+    'bls-yellow': 'BLS Yellow Response',
+    'vital-points': 'Vital Points',
+    'pre-arrival': 'Pre-arrival Instructions'
+  };
+  
+  return `${navTitles[navId]} - ${subNavTitles[subNavId]}`;
+}
+
+function getSubNavContentDetails(navId, subNavId) {
+  // This would contain detailed content for each combination
+  // For brevity, showing a few examples
+  
+  if (subNavId === 'medic-response') {
+    return `<strong>Medic Response Protocol:</strong><br />
+      • ALS unit should be dispatched<br />
+      • Estimated response time: 8-12 minutes<br />
+      • Prepare patient information for transfer<br />
+      • Clear access route for medics`;
+  } else if (subNavId === 'bls-red') {
+    return `<strong>BLS Red Response (Code 3):</strong><br />
+      • Emergency lights and sirens authorized<br />
+      • Life-threatening emergency response<br />
+      • All units proceed with caution<br />
+      • Priority traffic clearance`;
+  } else if (subNavId === 'bls-yellow') {
+    return `<strong>BLS Yellow Response (Code 2):</strong><br />
+      • Urgent but not immediately life-threatening<br />
+      • Expedited response without sirens<br />
+      • Standard traffic rules apply<br />
+      • Monitor for status changes`;
+  } else if (subNavId === 'vital-points') {
+    return `<strong>Vital Points to Monitor:</strong><br />
+      • Patient level of consciousness<br />
+      • Respiratory rate and quality<br />
+      • Pulse rate and strength<br />
+      • Skin color and temperature<br />
+      • Blood pressure if equipment available<br />
+      • Any changes in patient condition`;
+  } else if (subNavId === 'pre-arrival') {
+    return `<strong>Pre-arrival Instructions:</strong><br />
+      <br />
+      <strong>Stay on the line with caller:</strong><br />
+      • Keep patient comfortable<br />
+      • Do not give anything by mouth<br />
+      • Monitor breathing and consciousness<br />
+      • Have someone meet responders outside<br />
+      • Clear path to patient<br />
+      • Secure any pets<br />
+      • Gather patient medications<br />
+      <br />
+      <strong>Report immediately if:</strong><br />
+      • Patient stops breathing<br />
+      • Patient becomes unconscious<br />
+      • Condition worsens`;
+  }
+  
+  return 'Detailed instructions for this protocol section.';
 }
 
 // Location Form
@@ -141,6 +536,10 @@ function resetSimulation() {
     comments: ''
   };
   state.priority = 1;
+  state.navigation = {
+    activeNav: null,
+    activeSubNav: null
+  };
 
   // Reset form inputs
   document.getElementById('caller-name').value = '';
@@ -159,6 +558,28 @@ function resetSimulation() {
   });
   document.querySelector('.priority-btn[data-priority="1"]').classList.add('active');
   document.querySelector('.priority-btn[data-priority="1"]').setAttribute('aria-pressed', 'true');
+  
+  // Reset navigation
+  const navButtons = document.querySelectorAll('.code-btn');
+  navButtons.forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  
+  const subNavItems = document.querySelectorAll('.sub-nav-item');
+  subNavItems.forEach(function(item) {
+    item.classList.remove('active');
+  });
+  
+  // Hide sub-nav and reset content
+  document.getElementById('subNavContainer').style.display = 'none';
+  document.getElementById('contentArea').innerHTML = `
+    <article class="protocol-article">
+      <h4 class="protocol-title">Select a protocol to view content</h4>
+      <div class="protocol-content">
+        Click a green button to see sub-navigation options, or click a red CPR button to view content directly.
+      </div>
+    </article>
+  `;
 
   console.log('Simulation reset complete');
 }

@@ -57,77 +57,59 @@
 
       <div class="content-wrapper">
         <div class="layout-container">
-          <!-- Emergency Codes Panel -->
+          <!-- Navigation Panel -->
           <aside class="emergency-panel">
-            <div class="emergency-codes-grid">
+            <!-- Navigation Buttons -->
+            <nav class="emergency-codes-grid">
               <!-- Row 1 -->
               <div class="code-row">
-                <button class="code-btn emergency-btn" data-code="cardiac-arrest">Cardiac Arrest</button>
-                <button class="code-btn emergency-btn" data-code="choking">Choking</button>
-                <button class="code-btn emergency-btn" data-code="head-neck">Head/Neck</button>
+                <button class="code-btn emergency-btn" data-code="cardiac" data-type="nav">Cardiac</button>
+                <button class="code-btn emergency-btn" data-code="choking" data-type="nav">Choking</button>
+                <button class="code-btn emergency-btn" data-code="head-neck" data-type="nav">Head/Neck</button>
               </div>
               <!-- Row 2 -->
               <div class="code-row">
-                <button class="code-btn emergency-btn" data-code="mental-emotion">Mental/Emotion</button>
-                <button class="code-btn emergency-btn" data-code="od-poisoning">O.D/Poisoning</button>
-                <button class="code-btn emergency-btn" data-code="pregnancy-childbirth">Pregnancy/Childbirth</button>
+                <button class="code-btn emergency-btn" data-code="mental" data-type="nav">Mental</button>
+                <button class="code-btn emergency-btn" data-code="poisoning" data-type="nav">Poisoning</button>
+                <button class="code-btn emergency-btn" data-code="pregnancy" data-type="nav">Pregnancy</button>
               </div>
               <!-- Row 3 -->
               <div class="code-row">
-                <button class="code-btn emergency-btn" data-code="stroke">Stroke</button>
-                <button class="code-btn emergency-btn" data-code="seizures">Seizures</button>
-                <button class="code-btn emergency-btn" data-code="pediatrics">Pediatrics</button>
+                <button class="code-btn emergency-btn" data-code="stroke" data-type="nav">Stroke</button>
+                <button class="code-btn emergency-btn" data-code="seizures" data-type="nav">Seizures</button>
+                <button class="code-btn emergency-btn" data-code="pediatrics" data-type="nav">Pediatrics</button>
               </div>
               <!-- CPR Row -->
               <div class="code-row">
-                <button class="code-btn cpr-btn" data-code="cpr-adult-aed">CPR Adult/AED PAI</button>
-                <button class="code-btn cpr-btn" data-code="cpr-child">CPR Child 1-8</button>
-                <button class="code-btn cpr-btn" data-code="cpr-infant">CPR Infant/Newborn</button>
+                <button class="code-btn cpr-btn" data-code="cpr-adult" data-type="direct">CPR Adult</button>
+                <button class="code-btn cpr-btn" data-code="cpr-child" data-type="direct">CPR Child</button>
+                <button class="code-btn cpr-btn" data-code="cpr-infant" data-type="direct">CPR Infant</button>
               </div>
-            </div>
+            </nav>
 
             <div class="divider-thick"></div>
 
-            <section class="panel-section">
-              <h3>Medic Response</h3>
-            </section>
-
-            <div class="divider-thin"></div>
-
-            <div class="panel-section">
-              <div class="section-item">BLS Red Response</div>
-              <div class="section-item">BLS Yellow Response</div>
+            <!-- Sub-Navigation (initially hidden) -->
+            <div class="sub-nav-container" id="subNavContainer" style="display: none;">
+              <ul class="sub-nav-list" id="subNavList">
+                <li class="sub-nav-item" data-subnav="medic-response">Medic Response</li>
+                <li class="sub-nav-item" data-subnav="bls-red">BLS Red Response</li>
+                <li class="sub-nav-item" data-subnav="bls-yellow">BLS Yellow Response</li>
+                <li class="sub-nav-item" data-subnav="vital-points">Vital Points</li>
+                <li class="sub-nav-item" data-subnav="pre-arrival">Pre-arrival Instructions</li>
+              </ul>
+              <div class="divider-thick"></div>
             </div>
 
-            <div class="divider-thin"></div>
-
-            <div class="panel-section">
-              <div class="section-item">Vital Points</div>
-              <div class="section-item">Pre-arrival Instructions</div>
+            <!-- Scrollable Content Area -->
+            <div class="content-area" id="contentArea">
+              <article class="protocol-article">
+                <h4 class="protocol-title">Select a protocol to view content</h4>
+                <div class="protocol-content">
+                  Click a green button to see sub-navigation options, or click a red CPR button to view content directly.
+                </div>
+              </article>
             </div>
-
-            <div class="divider-thick"></div>
-
-            <article class="protocol-article">
-              <h4 class="protocol-title">6M1 - Unconscious or not breathing</h4>
-              <div class="protocol-content">
-                <strong>Medic:</strong><br />
-                <strong>If unsure about consciousness, use</strong><br />
-                <strong>questions below to probe further:</strong>
-                <ul class="protocol-list">
-                  <li>Does the patient respond to you?</li>
-                </ul>
-                • Respond to your voice (can they<br />
-                answer your questions).<br />
-                • Respond when you try to wake<br />
-                them up.<br />
-                <strong>If unsure about breathing normally,</strong><br />
-                <strong>inquire further:</strong><br />
-                • Does the patient's chest rise and fall?<br />
-                • Describe the patient's breathing.
-              </div>
-              <div class="protocol-arrow">▼</div>
-            </article>
           </aside>
 
           <!-- Location Form and Dispatch Buttons -->

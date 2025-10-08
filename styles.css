@@ -395,11 +395,74 @@ body {
   font-size: 20px;
 }
 
+/* Right Column */
+.right-column {
+  width: 50%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Address Results Box */
+.address-results {
+  background-color: white;
+  border: 1px solid rgba(190, 190, 190, 1);
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.address-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.address-list li {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(229, 229, 229, 1);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 16px;
+  color: #000;
+}
+
+.address-list li:last-child {
+  border-bottom: none;
+}
+
+.address-list li:hover {
+  background-color: rgba(6, 82, 181, 0.1);
+}
+
+.address-list li:active {
+  background-color: rgba(6, 82, 181, 0.2);
+}
+
+.address-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.address-results::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.address-results::-webkit-scrollbar-thumb {
+  background: rgba(190, 190, 190, 1);
+  border-radius: 10px;
+}
+
+.address-results::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 1);
+}
+
 /* Map Container */
 .map-container {
   position: relative;
-  width: 50%;
-  margin-left: 20px;
+  width: 100%;
   text-align: center;
   overflow: hidden;
   background-color: rgba(217, 217, 217, 1);

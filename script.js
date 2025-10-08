@@ -491,6 +491,22 @@ function initLocationForm() {
   const aptSuiteInput = document.getElementById('apt-suite');
   const commentsTextarea = document.getElementById('comments');
   const searchBtn = document.getElementById('searchBtn');
+  const addressResults = document.getElementById('addressResults');
+  const addressList = document.getElementById('addressList');
+
+  // Mock address database - replace with your actual addresses
+  const mockAddresses = [
+    '630 W BROADWAY, GLN',
+    '630 E BROADWAY, GLN',
+    '630 W BROADWAY, GLN (ROYAL PALMS CONV)',
+    '630 N BROADWAY, GLN, LFD',
+    '630 S BROADWAY, GLN, LFD',
+    '1234 MAIN STREET, GLN',
+    '5678 OAK AVENUE, GLN',
+    '910 PINE ROAD, GLN',
+    '1122 ELM STREET, GLN',
+    '3344 MAPLE DRIVE, GLN'
+  ];
 
   streetAddressInput.addEventListener('input', function(e) {
     state.locationData.streetAddress = e.target.value;
@@ -505,7 +521,62 @@ function initLocationForm() {
   });
 
   searchBtn.addEventListener('click', function() {
-    console.log('Searching for location:', state.locationData.streetAddress);
+    const searchQuery = state.locationData.streetAddress.trim().toLowerCase();
+    
+    console.log('Searching for location:', searchQuery);
+    
+    if (!searchQuery) {
+      alert('Please enter an address to search');
+      return;
+    }
+
+    // Filter addresses based on search query
+    const filteredAddresses = mockAddresses.filter(function(address) {
+      return address.toLowerCase().includes(searchQuery);
+    });
+
+    // Display results
+    if (filteredAddresses.length > 0) {
+      displayAddressResults(filteredAddresses);
+    } else {
+      // Show "no results" message
+      addressList.innerHTML = '<li style="padding: 20px; text-align: center; color: #666;">No addresses found. Try a different search.</li>';
+      addressResults.style.display = 'block';
+    }
+  });
+
+  function displayAddressResults(addresses) {
+    // Clear previous results
+    addressList.innerHTML = '';
+    
+    // Create list items for each address
+    addresses.forEach(function(address) {
+      const li = document.createElement('li');
+      li.textContent = address;
+      li.addEventListener('click', function() {
+        // Populate the street address field with selected address
+        streetAddressInput.value = address;
+        state.locationData.streetAddress = address;
+        
+        // Hide the results box
+        addressResults.style.display = 'none';
+        
+        console.log('Selected address:', address);
+      });
+      addressList.appendChild(li);
+    });
+    
+    // Show the results box
+    addressResults.style.display = 'block';
+  }
+
+  // Hide results when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!addressResults.contains(e.target) && 
+        e.target !== searchBtn && 
+        e.target !== streetAddressInput) {
+      addressResults.style.display = 'none';
+    }
   });
 }
 
@@ -602,6 +673,12 @@ function resetSimulation() {
   document.getElementById('street-address').value = '';
   document.getElementById('apt-suite').value = '';
   document.getElementById('comments').value = '';
+  
+  // Hide address results
+  const addressResults = document.getElementById('addressResults');
+  if (addressResults) {
+    addressResults.style.display = 'none';
+  }
 
   // Reset priority buttons
   const priorityButtons = document.querySelectorAll('.priority-btn');

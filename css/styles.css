@@ -441,6 +441,17 @@ body {
   background-color: rgba(6, 82, 181, 0.2);
 }
 
+.placeholder-text {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.placeholder-text:hover {
+  background-color: white !important;
+}
+
 .address-results::-webkit-scrollbar {
   width: 8px;
 }

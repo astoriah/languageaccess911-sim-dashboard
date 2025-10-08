@@ -526,7 +526,7 @@ function initLocationForm() {
     console.log('Searching for location:', searchQuery);
     
     if (!searchQuery) {
-      alert('Please enter an address to search');
+      addressList.innerHTML = '<li class="placeholder-text">Enter a search to see results</li>';
       return;
     }
 
@@ -540,8 +540,7 @@ function initLocationForm() {
       displayAddressResults(filteredAddresses);
     } else {
       // Show "no results" message
-      addressList.innerHTML = '<li style="padding: 20px; text-align: center; color: #666;">No addresses found. Try a different search.</li>';
-      addressResults.style.display = 'block';
+      addressList.innerHTML = '<li class="placeholder-text">No addresses found. Try a different search.</li>';
     }
   });
 
@@ -558,26 +557,14 @@ function initLocationForm() {
         streetAddressInput.value = address;
         state.locationData.streetAddress = address;
         
-        // Hide the results box
-        addressResults.style.display = 'none';
+        // Show placeholder text again
+        addressList.innerHTML = '<li class="placeholder-text">Enter a search to see results</li>';
         
         console.log('Selected address:', address);
       });
       addressList.appendChild(li);
     });
-    
-    // Show the results box
-    addressResults.style.display = 'block';
   }
-
-  // Hide results when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!addressResults.contains(e.target) && 
-        e.target !== searchBtn && 
-        e.target !== streetAddressInput) {
-      addressResults.style.display = 'none';
-    }
-  });
 }
 
 // Priority Buttons
@@ -674,10 +661,11 @@ function resetSimulation() {
   document.getElementById('apt-suite').value = '';
   document.getElementById('comments').value = '';
   
-  // Hide address results
+  // Reset address results to placeholder
   const addressResults = document.getElementById('addressResults');
-  if (addressResults) {
-    addressResults.style.display = 'none';
+  const addressList = document.getElementById('addressList');
+  if (addressList) {
+    addressList.innerHTML = '<li class="placeholder-text">Enter a search to see results</li>';
   }
 
   // Reset priority buttons

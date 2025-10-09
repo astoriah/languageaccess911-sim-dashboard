@@ -58,6 +58,7 @@ function initNavigation() {
   const navButtons = document.querySelectorAll(".code-btn");
   const subNavContainer = document.getElementById("subNavContainer");
   const subNavList = document.getElementById("subNavList");
+  const contentArea = document.getElementById("contentArea");
   const idcCodeInput = document.getElementById("idc-code");
 
   // Define sub-navigation items for each main button
@@ -112,6 +113,87 @@ function initNavigation() {
     ],
   };
 
+  // Define content for each main button
+  const contentData = {
+    cardiac: `
+      <h3>Cardiac</h3>
+      <h4>Medic:</h4>
+      <p>If unsure about consciousness, use questions below to probe further:</p>
+      <ul>
+        <li>Does the patient respond to you?</li>
+        <li>Respond to your voice (can they answer your questions?)</li>
+        <li>Respond when you try to wake them.</li>
+      </ul>
+      <p>If unsure about breathing normally, inquire further:</p>
+      <ul>
+        <li>Does the patient's chest rise and fall?</li>
+        <li>Describe the patient's breathing. Listen for sounds and frequency of breaths</li>
+      </ul>
+      <p>(agonal respirations described as):</p>
+      <ul>
+        <li>gasping</li>
+        <li>snoring</li>
+        <li>snorting</li>
+        <li>gurgling</li>
+        <li>moaning</li>
+        <li>barely breathing</li>
+        <li>breathing every once in awhile</li>
+        <li>takes breath now and then</li>
+        <li>occasional breathing</li>
+      </ul>
+      <p><strong>** If RP cannot tell if the patient is breathing normally, assume the patient is not breathing normally, go directly to age-appropriate CPR PA</strong></p>
+    `,
+    "cpr-adult": `
+      <h3>CPR ADULT</h3>
+      <p>Does the RP or anyone there know CPR? (Trained bystanders may still need instructions. Ask!)</p>
+      <p>Get the phone <strong>NEXT</strong> to the person.</p>
+      <p>Listen carefully. I'll tell you what to do.</p>
+      <ul>
+        <li>Get them <strong>FLAT</strong> on their back on the floor.</li>
+        <li><strong>KNEEL</strong> by their side.</li>
+        <li>Place one <strong>HAND</strong> on top of the other in the <strong>CENTER</strong> of their <strong>CHEST</strong>, right <strong>BETWEEN</strong> the <strong>NIPPLES</strong>.</li>
+        <li><strong>PUSH DOWN FIRMLY</strong> ON THEIR CHEST</li>
+        <li>Count <strong>OUT LOUD</strong>. 1-2-3-4 (correct rate if needed)</li>
+        <li><strong>KEEP PUMPING</strong> the <strong>CHEST UNTIL SOMEONE TAKES OVER</strong>.</li>
+      </ul>
+    `,
+    "cpr-child": `
+      <h3>CPR CHILD</h3>
+      <p>Does the RP or anyone there know CPR? (Trained bystanders may still need instructions. Ask!)</p>
+      <p>Get the phone <strong>NEXT</strong> to the child.</p>
+      <p>Listen carefully. I'll tell you what to do.</p>
+      <ul>
+        <li>Get them <strong>FLAT</strong> on their back on the floor.</li>
+        <li><strong>KNEEL</strong> by their side.</li>
+        <li>Place one <strong>HAND</strong> in the <strong>CENTER</strong> of their <strong>CHEST</strong>.</li>
+        <li><strong>PUSH DOWN FIRMLY</strong> ON THEIR CHEST</li>
+        <li>Count <strong>OUT LOUD</strong>. 1-2-3-4 (correct rate if needed)</li>
+        <li><strong>KEEP PUMPING</strong> the <strong>CHEST UNTIL SOMEONE TAKES OVER</strong>.</li>
+      </ul>
+    `,
+    "cpr-infant": `
+      <h3>CPR INFANT</h3>
+      <p>Does the RP or anyone there know CPR? (Trained bystanders may still need instructions. Ask!)</p>
+      <p>Get the phone <strong>NEXT</strong> to the infant.</p>
+      <p>Listen carefully. I'll tell you what to do.</p>
+      <ul>
+        <li>Get them <strong>FLAT</strong> on their back on a firm surface.</li>
+        <li>Place <strong>TWO FINGERS</strong> in the <strong>CENTER</strong> of the <strong>CHEST</strong>, just below the nipple line.</li>
+        <li><strong>PUSH DOWN FIRMLY</strong> ON THEIR CHEST</li>
+        <li>Count <strong>OUT LOUD</strong>. 1-2-3-4 (correct rate if needed)</li>
+        <li><strong>KEEP PUMPING</strong> the <strong>CHEST UNTIL SOMEONE TAKES OVER</strong>.</li>
+      </ul>
+    `,
+    choking: `<h3>Choking</h3><p>Content for choking protocol...</p>`,
+    "head-neck": `<h3>Head/Neck</h3><p>Content for head/neck protocol...</p>`,
+    mental: `<h3>Mental</h3><p>Content for mental health protocol...</p>`,
+    poisoning: `<h3>Poisoning</h3><p>Content for poisoning protocol...</p>`,
+    pregnancy: `<h3>Pregnancy</h3><p>Content for pregnancy protocol...</p>`,
+    stroke: `<h3>Stroke</h3><p>Content for stroke protocol...</p>`,
+    seizures: `<h3>Seizures</h3><p>Content for seizures protocol...</p>`,
+    pediatrics: `<h3>Pediatrics</h3><p>Content for pediatrics protocol...</p>`,
+  };
+
   console.log("Initializing navigation...");
   console.log("Found nav buttons:", navButtons.length);
 
@@ -152,10 +234,20 @@ function initNavigation() {
         // Generate sub-nav items for this button
         const subNavItems = subNavData[codeId] || [];
         populateSubNav(subNavItems);
+        
+        // Show content for this button
+        if (contentData[codeId]) {
+          contentArea.innerHTML = contentData[codeId];
+        }
       } else if (type === "direct") {
         // Red button - clear sub-nav and populate IDC directly
         console.log("Direct button clicked:", codeId);
         subNavList.innerHTML = "";
+        
+        // Show content for this button
+        if (contentData[codeId]) {
+          contentArea.innerHTML = contentData[codeId];
+        }
 
         // Populate IDC code for CPR buttons
         const idcMap = {
@@ -463,8 +555,9 @@ function resetSimulation() {
     item.classList.remove("active");
   });
 
-  // Clear sub-nav content
+  // Clear sub-nav content and content area
   document.getElementById("subNavList").innerHTML = "";
+  document.getElementById("contentArea").innerHTML = "";
 
   console.log("Simulation reset complete");
 }

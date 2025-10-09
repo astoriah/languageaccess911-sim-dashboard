@@ -234,6 +234,76 @@ body {
   font-weight: bold;
 }
 
+/* Content Container */
+.content-container {
+  margin-top: 0;
+  margin-bottom: 20px;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #f9fafb;
+  border-radius: 5px;
+}
+
+.content-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+  background: rgba(190, 190, 190, 1);
+  border-radius: 10px;
+}
+
+.content-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 1);
+}
+
+.content-area {
+  padding: 16px 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.content-area h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: rgba(6, 82, 181, 1);
+}
+
+.content-area h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.content-area p {
+  margin-bottom: 12px;
+}
+
+.content-area ul {
+  margin-left: 20px;
+  margin-bottom: 12px;
+  list-style-type: disc;
+}
+
+.content-area li {
+  margin-bottom: 8px;
+}
+
+.content-area strong {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 /* Main Content */
 .main-content {
   width: 67%;

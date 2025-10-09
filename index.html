@@ -21,7 +21,14 @@
               <label for="caller-number" class="inline-label">Caller Number</label>
               <input id="caller-number" type="tel" class="form-input" aria-label="Caller Number" />
               <label for="type" class="inline-label">Type</label>
-              <input id="type" type="text" class="form-input" aria-label="Call Type" />
+              <select id="type" class="form-select" aria-label="Call Type">
+                <option value="">Select Type</option>
+                <option value="emergency">Emergency</option>
+                <option value="non-emergency">Non-Emergency</option>
+                <option value="medical">Medical</option>
+                <option value="fire">Fire</option>
+                <option value="police">Police</option>
+              </select>
               <label for="idc-code" class="inline-label">IDC Code</label>
               <input id="idc-code" type="text" class="form-input idc-input" aria-label="IDC Code" />
             </div>

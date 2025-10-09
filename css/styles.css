@@ -183,7 +183,7 @@ body {
 .sub-nav-container {
   margin-top: 0;
   margin-bottom: 20px;
-  height: 200px;
+  height: 100px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -209,7 +209,7 @@ body {
 .sub-nav-list {
   list-style: none;
   padding: 0;
-  margin: 16px 16px;
+  margin: 4px 4px;
 }
 
 .sub-nav-item {

@@ -56,14 +56,13 @@ function initCallerInfoForm() {
 // Navigation System
 function initNavigation() {
   const navButtons = document.querySelectorAll('.code-btn');
-  const subNavContainer = document.getElementById('subNavContainer');
-  const subNavItems = document.querySelectorAll('.sub-nav-item');
+  const subNavBlocker = document.getElementById('subNavBlocker');
   const contentArea = document.getElementById('contentArea');
+  const contentDivider = document.getElementById('contentDivider');
 
   console.log('Initializing navigation...');
   console.log('Found nav buttons:', navButtons.length);
-  console.log('Found sub-nav items:', subNavItems.length);
-  console.log('Sub-nav container:', subNavContainer);
+  console.log('Sub-nav blocker:', subNavBlocker);
   console.log('Content area:', contentArea);
 
   if (!navButtons.length) {
@@ -71,8 +70,8 @@ function initNavigation() {
     return;
   }
 
-  if (!subNavContainer) {
-    console.error('Sub-nav container not found!');
+  if (!subNavBlocker) {
+    console.error('Sub-nav blocker not found!');
     return;
   }
 
@@ -99,57 +98,30 @@ function initNavigation() {
       
       // Update state
       state.navigation.activeNav = codeId;
-      state.navigation.activeSubNav = null;
       
       if (type === 'nav') {
-        // Green button - show sub-nav
-        console.log('Showing sub-nav for:', codeId);
-        subNavContainer.style.display = 'block';
+        // Green button - show sub-nav blocker and content
+        console.log('Showing content for:', codeId);
+        subNavBlocker.style.display = 'block';
+        contentDivider.style.display = 'block';
         
-        // Remove active from sub-nav items
-        subNavItems.forEach(function(item) {
-          item.classList.remove('active');
-        });
-        
-        // Show default content
-        showDefaultContent(codeId);
+        // Show content for this main category
+        showMainCategoryContent(codeId);
       } else if (type === 'direct') {
-        // Red button - hide sub-nav and show content directly
+        // Red button - hide sub-nav blocker and show content directly
         console.log('Showing direct content for:', codeId);
-        subNavContainer.style.display = 'none';
+        subNavBlocker.style.display = 'none';
+        contentDivider.style.display = 'block';
         showDirectContent(codeId);
       }
-    });
-  });
-
-  // Handle sub-navigation items
-  subNavItems.forEach(function(item) {
-    item.addEventListener('click', function() {
-      const subNavId = this.getAttribute('data-subnav');
-      
-      console.log('Sub-nav item clicked:', subNavId);
-      
-      // Remove active from all sub-nav items
-      subNavItems.forEach(function(subItem) {
-        subItem.classList.remove('active');
-      });
-      
-      // Add active to clicked item
-      this.classList.add('active');
-      
-      // Update state
-      state.navigation.activeSubNav = subNavId;
-      
-      // Show content for this sub-nav
-      showSubNavContent(state.navigation.activeNav, subNavId);
     });
   });
 
   console.log('Navigation initialized successfully');
 }
 
-// Show default content when a green button is clicked
-function showDefaultContent(navId) {
+// Show content for main category (green buttons)
+function showMainCategoryContent(navId) {
   const contentArea = document.getElementById('contentArea');
   
   const contentMap = {
@@ -264,7 +236,7 @@ function showDefaultContent(navId) {
   
   const content = contentMap[navId] || {
     title: 'Protocol Content',
-    content: 'Select a sub-navigation item to view specific instructions.'
+    content: 'Protocol instructions will be displayed here.'
   };
   
   contentArea.innerHTML = `
@@ -390,100 +362,6 @@ function showDirectContent(navId) {
   contentArea.scrollTop = 0;
 }
 
-// Show content for sub-navigation selection
-function showSubNavContent(navId, subNavId) {
-  const contentArea = document.getElementById('contentArea');
-  
-  // Content varies based on both main nav and sub-nav
-  const title = getSubNavTitle(navId, subNavId);
-  const content = getSubNavContentDetails(navId, subNavId);
-  
-  contentArea.innerHTML = `
-    <article class="protocol-article">
-      <h4 class="protocol-title">${title}</h4>
-      <div class="protocol-content">
-        ${content}
-      </div>
-    </article>
-  `;
-  
-  contentArea.scrollTop = 0;
-}
-
-function getSubNavTitle(navId, subNavId) {
-  const navTitles = {
-    'cardiac': 'Cardiac',
-    'choking': 'Choking',
-    'head-neck': 'Head/Neck',
-    'mental': 'Mental',
-    'poisoning': 'Poisoning',
-    'pregnancy': 'Pregnancy',
-    'stroke': 'Stroke',
-    'seizures': 'Seizures',
-    'pediatrics': 'Pediatrics'
-  };
-  
-  const subNavTitles = {
-    'medic-response': 'Medic Response',
-    'bls-red': 'BLS Red Response',
-    'bls-yellow': 'BLS Yellow Response',
-    'vital-points': 'Vital Points',
-    'pre-arrival': 'Pre-arrival Instructions'
-  };
-  
-  return `${navTitles[navId]} - ${subNavTitles[subNavId]}`;
-}
-
-function getSubNavContentDetails(navId, subNavId) {
-  // This would contain detailed content for each combination
-  // For brevity, showing a few examples
-  
-  if (subNavId === 'medic-response') {
-    return `<strong>Medic Response Protocol:</strong><br />
-      • ALS unit should be dispatched<br />
-      • Estimated response time: 8-12 minutes<br />
-      • Prepare patient information for transfer<br />
-      • Clear access route for medics`;
-  } else if (subNavId === 'bls-red') {
-    return `<strong>BLS Red Response (Code 3):</strong><br />
-      • Emergency lights and sirens authorized<br />
-      • Life-threatening emergency response<br />
-      • All units proceed with caution<br />
-      • Priority traffic clearance`;
-  } else if (subNavId === 'bls-yellow') {
-    return `<strong>BLS Yellow Response (Code 2):</strong><br />
-      • Urgent but not immediately life-threatening<br />
-      • Expedited response without sirens<br />
-      • Standard traffic rules apply<br />
-      • Monitor for status changes`;
-  } else if (subNavId === 'vital-points') {
-    return `<strong>Vital Points to Monitor:</strong><br />
-      • Patient level of consciousness<br />
-      • Respiratory rate and quality<br />
-      • Pulse rate and strength<br />
-      • Skin color and temperature<br />
-      • Blood pressure if equipment available<br />
-      • Any changes in patient condition`;
-  } else if (subNavId === 'pre-arrival') {
-    return `<strong>Pre-arrival Instructions:</strong><br />
-      <br />
-      <strong>Stay on the line with caller:</strong><br />
-      • Keep patient comfortable<br />
-      • Do not give anything by mouth<br />
-      • Monitor breathing and consciousness<br />
-      • Have someone meet responders outside<br />
-      • Clear path to patient<br />
-      • Secure any pets<br />
-      • Gather patient medications<br />
-      <br />
-      <strong>Report immediately if:</strong><br />
-      • Patient stops breathing<br />
-      • Patient becomes unconscious<br />
-      • Condition worsens`;
-  }
-  
-  return 'Detailed instructions for this protocol section.';
-}
 
 // Location Form
 function initLocationForm() {

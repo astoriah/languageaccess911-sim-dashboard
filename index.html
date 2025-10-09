@@ -89,19 +89,19 @@
 
             <div class="divider-thick"></div>
 
-            <!-- Sub-Navigation (initially hidden) -->
-            <div class="sub-nav-container" id="subNavContainer" style="display: none;">
-              <ul class="sub-nav-list" id="subNavList">
-                <li class="sub-nav-item" data-subnav="medic-response">Medic Response</li>
-                <li class="sub-nav-item" data-subnav="bls-red">BLS Red Response</li>
-                <li class="sub-nav-item" data-subnav="bls-yellow">BLS Yellow Response</li>
-                <li class="sub-nav-item" data-subnav="vital-points">Vital Points</li>
-                <li class="sub-nav-item" data-subnav="pre-arrival">Pre-arrival Instructions</li>
+            <!-- Sub-Navigation Blocker (initially hidden) -->
+            <div class="sub-nav-blocker" id="subNavBlocker" style="display: none;">
+              <ul class="sub-nav-list">
+                <li class="sub-nav-item blocked">Medic Response</li>
+                <li class="sub-nav-item blocked">BLS Red Response</li>
+                <li class="sub-nav-item blocked">BLS Yellow Response</li>
+                <li class="sub-nav-item blocked">Vital Points</li>
+                <li class="sub-nav-item blocked">Pre-arrival Instructions</li>
               </ul>
-              <div class="divider-thick"></div>
             </div>
 
             <!-- Scrollable Content Area -->
+            <div class="divider-thick" id="contentDivider" style="display: none;"></div>
             <div class="content-area" id="contentArea">
               <article class="protocol-article">
                 <h4 class="protocol-title">Select a protocol to view content</h4>

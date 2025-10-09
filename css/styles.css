@@ -182,8 +182,8 @@ body {
 /* Sub-Navigation */
 .sub-nav-container {
   margin-top: 0;
-  margin-bottom: 20px;
-  height: 100px;
+  margin-bottom: 10px;
+  height: 150px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -209,7 +209,7 @@ body {
 .sub-nav-list {
   list-style: none;
   padding: 0;
-  margin: 4px 4px;
+  margin: 16px 16px;
 }
 
 .sub-nav-item {

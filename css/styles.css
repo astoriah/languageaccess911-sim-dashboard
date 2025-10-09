@@ -183,6 +183,27 @@ body {
 .sub-nav-container {
   margin-top: 0;
   margin-bottom: 20px;
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sub-nav-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sub-nav-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.sub-nav-container::-webkit-scrollbar-thumb {
+  background: rgba(190, 190, 190, 1);
+  border-radius: 10px;
+}
+
+.sub-nav-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 1);
 }
 
 .sub-nav-list {

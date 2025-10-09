@@ -146,18 +146,16 @@ function initNavigation() {
       state.navigation.activeSubNav = null;
 
       if (type === "nav") {
-        // Green button - show sub-nav with specific items
+        // Green button - populate sub-nav with specific items
         console.log("Showing sub-nav for:", codeId);
         
         // Generate sub-nav items for this button
         const subNavItems = subNavData[codeId] || [];
         populateSubNav(subNavItems);
-        
-        subNavContainer.style.display = "block";
       } else if (type === "direct") {
-        // Red button - hide sub-nav and populate IDC directly
+        // Red button - clear sub-nav and populate IDC directly
         console.log("Direct button clicked:", codeId);
-        subNavContainer.style.display = "none";
+        subNavList.innerHTML = "";
 
         // Populate IDC code for CPR buttons
         const idcMap = {
@@ -465,16 +463,8 @@ function resetSimulation() {
     item.classList.remove("active");
   });
 
-  // Hide sub-nav and reset content
-  document.getElementById("subNavContainer").style.display = "none";
-  document.getElementById("contentArea").innerHTML = `
-    <article class="protocol-article">
-      <h4 class="protocol-title">Select a protocol to view content</h4>
-      <div class="protocol-content">
-        Click a green button to see sub-navigation options, or click a red CPR button to view content directly.
-      </div>
-    </article>
-  `;
+  // Clear sub-nav content
+  document.getElementById("subNavList").innerHTML = "";
 
   console.log("Simulation reset complete");
 }

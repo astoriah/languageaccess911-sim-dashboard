@@ -163,19 +163,39 @@ function initLocationForm() {
   const addressResults = document.getElementById("addressResults");
   const addressList = document.getElementById("addressList");
 
-  // Mock address database - replace with your actual addresses
-  const mockAddresses = [
-    "630 W BROADWAY, GLN",
-    "630 E BROADWAY, GLN",
-    "630 W BROADWAY, GLN (ROYAL PALMS CONV)",
-    "630 N BROADWAY, GLN, LFD",
-    "630 S BROADWAY, GLN, LFD",
-    "1234 MAIN STREET, GLN",
-    "5678 OAK AVENUE, GLN",
-    "910 PINE ROAD, GLN",
-    "1122 ELM STREET, GLN",
-    "3344 MAPLE DRIVE, GLN",
-  ];
+  // Address databases for different scenarios
+  const addressDatabases = {
+    P: [
+      "630 W BROADWAY, GLN",
+      "630 E BROADWAY, GLN",
+      "630 W BROADWAY, GLN (ROYAL PALMS CONV)",
+      "630 N BROADWAY, GLN, LFD",
+      "910 PINE ROAD, GLN",
+      "1122 ELM STREET, GLN",
+      "3344 MAPLE DRIVE, GLN"
+    ],
+    1: [
+      "5013 Belmont Avenue",
+      "1513 Belmont Avenue",
+      "1530 Bellevue Avenue",
+      "1530 Belmont Avenue",
+      "1530 Belmont Place"
+    ],
+    2: [
+      "742 Evergreen Terrace",
+      "744 Evergreen Terrace",
+      "742 Evergreen Avenue",
+      "742 Evergreen Drive",
+      "724 Evergreen Terrace"
+    ],
+    3: [
+      "221B Baker Street",
+      "221A Baker Street",
+      "221 Baker Street",
+      "212 Baker Street",
+      "221B Baker Avenue"
+    ]
+  };
 
   streetAddressInput.addEventListener("input", function (e) {
     state.locationData.streetAddress = e.target.value;
@@ -199,8 +219,26 @@ function initLocationForm() {
       return;
     }
 
+    // Determine which address database to use based on current priority
+    let currentDatabase;
+    switch (state.priority) {
+      case 1:
+        currentDatabase = addressDatabases[1];
+        break;
+      case 2:
+        currentDatabase = addressDatabases[2];
+        break;
+      case 3:
+        currentDatabase = addressDatabases[3];
+        break;
+      default:
+        currentDatabase = addressDatabases.P;
+    }
+
+    console.log("Using scenario:", state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : "P");
+
     // Filter addresses based on search query
-    const filteredAddresses = mockAddresses.filter(function (address) {
+    const filteredAddresses = currentDatabase.filter(function (address) {
       return address.toLowerCase().includes(searchQuery);
     });
 

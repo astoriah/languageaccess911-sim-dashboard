@@ -60,7 +60,6 @@ function initNavigation() {
   const subNavList = document.getElementById("subNavList");
   const contentArea = document.getElementById("contentArea");
   const idcCodeInput = document.getElementById("idc-code");
-  const typeSelect = document.getElementById("type");
 
   // Define sub-navigation items for each main button
   const subNavData = {
@@ -213,7 +212,6 @@ function initNavigation() {
     button.addEventListener("click", function () {
       const codeId = this.getAttribute("data-code");
       const type = this.getAttribute("data-type");
-      const buttonText = this.textContent.trim();
 
       console.log("Button clicked:", codeId, type);
 
@@ -232,41 +230,35 @@ function initNavigation() {
       if (type === "nav") {
         // Green button - populate sub-nav with specific items
         console.log("Showing sub-nav for:", codeId);
-        
-        // Populate TYPE field with button text
-        if (typeSelect) {
-          typeSelect.value = buttonText;
-          state.callerInfo.type = buttonText;
-        }
-        
+
         // Generate sub-nav items for this button
         const subNavItems = subNavData[codeId] || [];
         populateSubNav(subNavItems);
-        
+
         // Show content for this button
         if (contentData[codeId]) {
           contentArea.innerHTML = contentData[codeId];
         }
       } else if (type === "direct") {
-        // Red button - populate TYPE but leave IDC Code blank
+        // Red button - clear sub-nav and populate IDC directly
         console.log("Direct button clicked:", codeId);
         subNavList.innerHTML = "";
-        
-        // Populate TYPE field with button text
-        if (typeSelect) {
-          typeSelect.value = buttonText;
-          state.callerInfo.type = buttonText;
-        }
-        
-        // Clear IDC Code for CPR buttons
-        if (idcCodeInput) {
-          idcCodeInput.value = "";
-          state.callerInfo.idcCode = "";
-        }
-        
+
         // Show content for this button
         if (contentData[codeId]) {
           contentArea.innerHTML = contentData[codeId];
+        }
+
+        // Populate IDC code for CPR buttons
+        const idcMap = {
+          "cpr-adult": "CPR-A",
+          "cpr-child": "CPR-C",
+          "cpr-infant": "CPR-I",
+        };
+
+        if (idcCodeInput && idcMap[codeId]) {
+          idcCodeInput.value = idcMap[codeId];
+          state.callerInfo.idcCode = idcMap[codeId];
         }
       }
     });
@@ -335,9 +327,6 @@ function initLocationForm() {
       "630 E BROADWAY, GLN",
       "630 W BROADWAY, GLN (ROYAL PALMS CONV)",
       "630 N BROADWAY, GLN, LFD",
-      "910 PINE ROAD, GLN",
-      "1122 ELM STREET, GLN",
-      "3344 MAPLE DRIVE, GLN",
     ],
     1: [
       "5013 Belmont Avenue",
@@ -345,6 +334,7 @@ function initLocationForm() {
       "1530 Bellevue Avenue",
       "1530 Belmont Avenue",
       "1530 Belmont Place",
+      "5013 Belmont Avenue",
     ],
     2: [
       "742 Evergreen Terrace",
@@ -489,7 +479,7 @@ function initDispatchButtons() {
   const audioCloseBtn = document.getElementById("audioCloseBtn");
   const audio988 = document.getElementById("audio988");
   const audioLangLine = document.getElementById("audioLangLine");
-  
+
   let currentAudio = null;
 
   dispatchButtons.forEach(function (button) {

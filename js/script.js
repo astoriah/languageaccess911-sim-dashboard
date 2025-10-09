@@ -108,6 +108,13 @@ function initNavigation() {
         console.log("Direct button clicked:", codeId);
         subNavContainer.style.display = "none";
 
+        // Populate IDC code for CPR buttons
+        const idcMap = {
+          "cpr-adult": "CPR-A",
+          "cpr-child": "CPR-C",
+          "cpr-infant": "CPR-I",
+        };
+
         if (idcCodeInput && idcMap[codeId]) {
           idcCodeInput.value = idcMap[codeId];
           state.callerInfo.idcCode = idcMap[codeId];

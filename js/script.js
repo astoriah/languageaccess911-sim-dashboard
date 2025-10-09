@@ -172,29 +172,23 @@ function initLocationForm() {
       "630 N BROADWAY, GLN, LFD",
       "910 PINE ROAD, GLN",
       "1122 ELM STREET, GLN",
-      "3344 MAPLE DRIVE, GLN"
+      "3344 MAPLE DRIVE, GLN",
     ],
     1: [
       "5013 Belmont Avenue",
       "1513 Belmont Avenue",
       "1530 Bellevue Avenue",
       "1530 Belmont Avenue",
-      "1530 Belmont Place"
+      "1530 Belmont Place",
     ],
     2: [
       "742 Evergreen Terrace",
       "744 Evergreen Terrace",
       "742 Evergreen Avenue",
       "742 Evergreen Drive",
-      "724 Evergreen Terrace"
+      "724 Evergreen Terrace",
     ],
-    3: [
-      "221B Baker Street",
-      "221A Baker Street",
-      "221 Baker Street",
-      "212 Baker Street",
-      "221B Baker Avenue"
-    ]
+    3: ["221B Baker Street", "221A Baker Street", "221 Baker Street", "212 Baker Street", "221B Baker Avenue"],
   };
 
   streetAddressInput.addEventListener("input", function (e) {
@@ -235,7 +229,10 @@ function initLocationForm() {
         currentDatabase = addressDatabases.P;
     }
 
-    console.log("Using scenario:", state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : "P");
+    console.log(
+      "Using scenario:",
+      state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : "P",
+    );
 
     // Filter addresses based on search query
     const filteredAddresses = currentDatabase.filter(function (address) {
@@ -243,7 +240,7 @@ function initLocationForm() {
     });
 
     // Display results
-    if (filteredAddresses.length > 4) {
+    if (filteredAddresses.length > 1) {
       displayAddressResults(filteredAddresses);
     } else {
       // Show "no results" message

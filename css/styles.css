@@ -182,8 +182,8 @@ body {
 /* Sub-Navigation */
 .sub-nav-container {
   margin-top: 0;
-  margin-bottom: 10px;
-  height: 150px;
+  margin-bottom: 20px;
+  height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -422,6 +422,7 @@ body {
   background-color: white;
   border: 1px solid rgba(190, 190, 190, 1);
   border-radius: 5px;
+  min-height: 200px;
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
@@ -501,10 +502,8 @@ body {
 }
 
 .priority-group {
-  position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: 10px;
   display: flex;
   gap: 10px;
   align-items: center;

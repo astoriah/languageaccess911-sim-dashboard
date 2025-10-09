@@ -89,26 +89,15 @@
 
             <div class="divider-thick"></div>
 
-            <!-- Sub-Navigation Blocker (initially hidden) -->
-            <div class="sub-nav-blocker" id="subNavBlocker" style="display: none;">
-              <ul class="sub-nav-list">
-                <li class="sub-nav-item blocked">Medic Response</li>
-                <li class="sub-nav-item blocked">BLS Red Response</li>
-                <li class="sub-nav-item blocked">BLS Yellow Response</li>
-                <li class="sub-nav-item blocked">Vital Points</li>
-                <li class="sub-nav-item blocked">Pre-arrival Instructions</li>
+            <!-- Sub-Navigation (initially hidden) -->
+            <div class="sub-nav-container" id="subNavContainer" style="display: none;">
+              <ul class="sub-nav-list" id="subNavList">
+                <li class="sub-nav-item" data-subnav="medic-response" data-idc="MR">Medic Response</li>
+                <li class="sub-nav-item" data-subnav="bls-red" data-idc="BR">BLS Red Response</li>
+                <li class="sub-nav-item" data-subnav="bls-yellow" data-idc="BY">BLS Yellow Response</li>
+                <li class="sub-nav-item" data-subnav="vital-points" data-idc="VP">Vital Points</li>
+                <li class="sub-nav-item" data-subnav="pre-arrival" data-idc="PA">Pre-arrival Instructions</li>
               </ul>
-            </div>
-
-            <!-- Scrollable Content Area -->
-            <div class="divider-thick" id="contentDivider" style="display: none;"></div>
-            <div class="content-area" id="contentArea">
-              <article class="protocol-article">
-                <h4 class="protocol-title">Select a protocol to view content</h4>
-                <div class="protocol-content">
-                  Click a green button to see sub-navigation options, or click a red CPR button to view content directly.
-                </div>
-              </article>
             </div>
           </aside>
 

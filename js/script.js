@@ -56,27 +56,21 @@ function initCallerInfoForm() {
 // Navigation System
 function initNavigation() {
   const navButtons = document.querySelectorAll('.code-btn');
-  const subNavBlocker = document.getElementById('subNavBlocker');
-  const contentArea = document.getElementById('contentArea');
-  const contentDivider = document.getElementById('contentDivider');
+  const subNavContainer = document.getElementById('subNavContainer');
+  const subNavItems = document.querySelectorAll('.sub-nav-item');
+  const idcCodeInput = document.getElementById('idc-code');
 
   console.log('Initializing navigation...');
   console.log('Found nav buttons:', navButtons.length);
-  console.log('Sub-nav blocker:', subNavBlocker);
-  console.log('Content area:', contentArea);
+  console.log('Found sub-nav items:', subNavItems.length);
 
   if (!navButtons.length) {
     console.error('No navigation buttons found!');
     return;
   }
 
-  if (!subNavBlocker) {
-    console.error('Sub-nav blocker not found!');
-    return;
-  }
-
-  if (!contentArea) {
-    console.error('Content area not found!');
+  if (!subNavContainer) {
+    console.error('Sub-nav container not found!');
     return;
   }
 
@@ -98,21 +92,61 @@ function initNavigation() {
       
       // Update state
       state.navigation.activeNav = codeId;
+      state.navigation.activeSubNav = null;
       
       if (type === 'nav') {
-        // Green button - show sub-nav blocker and content
-        console.log('Showing content for:', codeId);
-        subNavBlocker.style.display = 'block';
-        contentDivider.style.display = 'block';
+        // Green button - show sub-nav
+        console.log('Showing sub-nav for:', codeId);
+        subNavContainer.style.display = 'block';
         
-        // Show content for this main category
-        showMainCategoryContent(codeId);
+        // Remove active from sub-nav items
+        subNavItems.forEach(function(item) {
+          item.classList.remove('active');
+        });
       } else if (type === 'direct') {
-        // Red button - hide sub-nav blocker and show content directly
-        console.log('Showing direct content for:', codeId);
-        subNavBlocker.style.display = 'none';
-        contentDivider.style.display = 'block';
-        showDirectContent(codeId);
+        // Red button - hide sub-nav and populate IDC directly
+        console.log('Direct button clicked:', codeId);
+        subNavContainer.style.display = 'none';
+        
+        // Populate IDC code for CPR buttons
+        const idcMap = {
+          'cpr-adult': 'CPR-A',
+          'cpr-child': 'CPR-C',
+          'cpr-infant': 'CPR-I'
+        };
+        
+        if (idcCodeInput && idcMap[codeId]) {
+          idcCodeInput.value = idcMap[codeId];
+          state.callerInfo.idcCode = idcMap[codeId];
+        }
+      }
+    });
+  });
+
+  // Handle sub-navigation items - populate IDC code
+  subNavItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      const subNavId = this.getAttribute('data-subnav');
+      const idcCode = this.getAttribute('data-idc');
+      
+      console.log('Sub-nav item clicked:', subNavId, 'IDC:', idcCode);
+      
+      // Remove active from all sub-nav items
+      subNavItems.forEach(function(subItem) {
+        subItem.classList.remove('active');
+      });
+      
+      // Add active to clicked item
+      this.classList.add('active');
+      
+      // Update state
+      state.navigation.activeSubNav = subNavId;
+      
+      // Populate IDC code field
+      if (idcCodeInput && idcCode) {
+        idcCodeInput.value = idcCode;
+        state.callerInfo.idcCode = idcCode;
+        console.log('IDC code populated:', idcCode);
       }
     });
   });
@@ -120,247 +154,6 @@ function initNavigation() {
   console.log('Navigation initialized successfully');
 }
 
-// Show content for main category (green buttons)
-function showMainCategoryContent(navId) {
-  const contentArea = document.getElementById('contentArea');
-  
-  const contentMap = {
-    'cardiac': {
-      title: 'Cardiac Emergency Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Check for responsiveness and breathing<br />
-        • Look for signs of cardiac distress<br />
-        • Assess chest pain, shortness of breath<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Call for ALS backup immediately<br />
-        • Begin cardiac monitoring<br />
-        • Prepare for possible cardiac arrest`
-    },
-    'choking': {
-      title: 'Choking Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Determine if airway is completely blocked<br />
-        • Check if patient can speak or cough<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • If complete obstruction: Heimlich maneuver<br />
-        • If partial obstruction: encourage coughing<br />
-        • Prepare for advanced airway management`
-    },
-    'head-neck': {
-      title: 'Head/Neck Injury Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Check level of consciousness<br />
-        • Assess for neck pain or deformity<br />
-        • Look for signs of head trauma<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Maintain c-spine stabilization<br />
-        • Monitor for changes in mental status<br />
-        • Prepare for spinal immobilization`
-    },
-    'mental': {
-      title: 'Mental/Emotional Crisis Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Assess patient's mental state<br />
-        • Check for danger to self or others<br />
-        • Determine if psychiatric evaluation needed<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Ensure scene safety<br />
-        • Use calm, reassuring communication<br />
-        • Consider law enforcement assistance if needed`
-    },
-    'poisoning': {
-      title: 'Overdose/Poisoning Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Identify substance if possible<br />
-        • Check vital signs and consciousness<br />
-        • Look for signs of toxicity<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Contact poison control center<br />
-        • Prepare for antidote administration<br />
-        • Monitor airway and breathing closely`
-    },
-    'pregnancy': {
-      title: 'Pregnancy/Childbirth Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Determine stage of labor<br />
-        • Check for complications<br />
-        • Assess if delivery is imminent<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Prepare for delivery if needed<br />
-        • Monitor mother and baby<br />
-        • Have neonatal resuscitation equipment ready`
-    },
-    'stroke': {
-      title: 'Stroke Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Use FAST assessment (Face, Arms, Speech, Time)<br />
-        • Document time of symptom onset<br />
-        • Check blood glucose<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Rapid transport to stroke center<br />
-        • Keep patient NPO<br />
-        • Monitor vital signs closely`
-    },
-    'seizures': {
-      title: 'Seizure Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Note type and duration of seizure<br />
-        • Check for injuries from seizure<br />
-        • Assess post-ictal state<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Protect from injury during seizure<br />
-        • Maintain airway after seizure<br />
-        • Consider causes (hypoglycemia, etc.)`
-    },
-    'pediatrics': {
-      title: 'Pediatric Emergency Protocol',
-      content: `<strong>Assessment:</strong><br />
-        • Use age-appropriate assessment tools<br />
-        • Check vital signs for pediatric norms<br />
-        • Assess level of distress<br />
-        <br />
-        <strong>Actions:</strong><br />
-        • Use pediatric equipment sizing<br />
-        • Keep caregiver with child when possible<br />
-        • Adjust medication dosing for weight`
-    }
-  };
-  
-  const content = contentMap[navId] || {
-    title: 'Protocol Content',
-    content: 'Protocol instructions will be displayed here.'
-  };
-  
-  contentArea.innerHTML = `
-    <article class="protocol-article">
-      <h4 class="protocol-title">${content.title}</h4>
-      <div class="protocol-content">
-        ${content.content}
-      </div>
-    </article>
-  `;
-  
-  contentArea.scrollTop = 0;
-}
-
-// Show content for direct access (red buttons)
-function showDirectContent(navId) {
-  const contentArea = document.getElementById('contentArea');
-  
-  const contentMap = {
-    'cpr-adult': {
-      title: 'CPR Adult/AED Protocol',
-      content: `<strong>CPR for Adults (Age 8+):</strong><br />
-        <br />
-        <strong>1. Check responsiveness</strong><br />
-        • Tap shoulders and shout "Are you OK?"<br />
-        • If no response, call 911 immediately<br />
-        <br />
-        <strong>2. Check breathing</strong><br />
-        • Look for chest rise<br />
-        • Listen for breath sounds<br />
-        • If not breathing normally, begin CPR<br />
-        <br />
-        <strong>3. Hand position</strong><br />
-        • Place heel of one hand in center of chest<br />
-        • Place other hand on top<br />
-        • Interlock fingers<br />
-        <br />
-        <strong>4. Compressions</strong><br />
-        • Push hard and fast<br />
-        • At least 2 inches deep<br />
-        • 100-120 compressions per minute<br />
-        • 30 compressions, then 2 breaths<br />
-        <br />
-        <strong>5. AED Instructions</strong><br />
-        • Turn on AED<br />
-        • Follow voice prompts<br />
-        • Do not touch patient during shock<br />
-        • Resume CPR immediately after shock`
-    },
-    'cpr-child': {
-      title: 'CPR Child (1-8 years) Protocol',
-      content: `<strong>CPR for Children (Age 1-8):</strong><br />
-        <br />
-        <strong>1. Check responsiveness</strong><br />
-        • Tap shoulders gently<br />
-        • Call for help<br />
-        <br />
-        <strong>2. Check breathing</strong><br />
-        • Look, listen, feel for breathing<br />
-        • If not breathing, begin CPR<br />
-        <br />
-        <strong>3. Hand position</strong><br />
-        • Use one or two hands<br />
-        • Center of chest, between nipples<br />
-        <br />
-        <strong>4. Compressions</strong><br />
-        • About 2 inches deep (1/3 chest depth)<br />
-        • 100-120 compressions per minute<br />
-        • 30 compressions, then 2 breaths<br />
-        <br />
-        <strong>5. Breaths</strong><br />
-        • Tilt head back slightly<br />
-        • Give 2 gentle breaths<br />
-        • Watch for chest rise`
-    },
-    'cpr-infant': {
-      title: 'CPR Infant/Newborn Protocol',
-      content: `<strong>CPR for Infants (Under 1 year):</strong><br />
-        <br />
-        <strong>1. Check responsiveness</strong><br />
-        • Tap foot gently<br />
-        • Call for help immediately<br />
-        <br />
-        <strong>2. Check breathing</strong><br />
-        • Look for chest movement<br />
-        • Listen for breath sounds<br />
-        <br />
-        <strong>3. Hand position</strong><br />
-        • Use two fingers only<br />
-        • Just below nipple line<br />
-        <br />
-        <strong>4. Compressions</strong><br />
-        • About 1.5 inches deep (1/3 chest depth)<br />
-        • 100-120 compressions per minute<br />
-        • 30 compressions, then 2 breaths<br />
-        <br />
-        <strong>5. Breaths</strong><br />
-        • Cover infant's mouth and nose<br />
-        • Give 2 small puffs of air<br />
-        • Watch for chest rise<br />
-        <br />
-        <strong>Special Considerations:</strong><br />
-        • Be gentle but effective<br />
-        • Continue until help arrives<br />
-        • Do not stop unless infant responds`
-    }
-  };
-  
-  const content = contentMap[navId] || {
-    title: 'CPR Protocol',
-    content: 'CPR instructions will be displayed here.'
-  };
-  
-  contentArea.innerHTML = `
-    <article class="protocol-article">
-      <h4 class="protocol-title">${content.title}</h4>
-      <div class="protocol-content">
-        ${content.content}
-      </div>
-    </article>
-  `;
-  
-  contentArea.scrollTop = 0;
-}
 
 
 // Location Form

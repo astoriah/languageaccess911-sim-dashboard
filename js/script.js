@@ -60,6 +60,7 @@ function initNavigation() {
   const subNavList = document.getElementById("subNavList");
   const contentArea = document.getElementById("contentArea");
   const idcCodeInput = document.getElementById("idc-code");
+  const typeSelect = document.getElementById("type");
 
   // Define sub-navigation items for each main button
   const subNavData = {

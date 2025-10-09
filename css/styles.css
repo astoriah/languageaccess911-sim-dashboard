@@ -422,7 +422,7 @@ body {
   background-color: white;
   border: 1px solid rgba(190, 190, 190, 1);
   border-radius: 5px;
-  min-height: 100px;
+  min-height: 200px;
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
@@ -496,14 +496,14 @@ body {
 
 .map-iframe {
   width: 100%;
-  height: 400px;
+  height: 480px;
   border: none;
   display: block;
 }
 
 .priority-group {
   position: relative;
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   gap: 10px;
   align-items: center;

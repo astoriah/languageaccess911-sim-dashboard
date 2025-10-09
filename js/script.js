@@ -11,7 +11,7 @@ const state = {
     aptSuite: "",
     comments: "",
   },
-  priority: 1,
+  priority: 0,
   navigation: {
     activeNav: null,
     activeSubNav: null,
@@ -350,7 +350,7 @@ function resetSimulation() {
     aptSuite: "",
     comments: "",
   };
-  state.priority = 1;
+  state.priority = 0;
   state.navigation = {
     activeNav: null,
     activeSubNav: null,
@@ -378,8 +378,8 @@ function resetSimulation() {
     btn.classList.remove("active");
     btn.setAttribute("aria-pressed", "false");
   });
-  document.querySelector('.priority-btn[data-priority="1"]').classList.add("active");
-  document.querySelector('.priority-btn[data-priority="1"]').setAttribute("aria-pressed", "true");
+  document.querySelector('.priority-btn[data-priority="0"]').classList.add("active");
+  document.querySelector('.priority-btn[data-priority="0"]').setAttribute("aria-pressed", "true");
 
   // Reset map iframe
   const mapIframe = document.getElementById("mapIframe");

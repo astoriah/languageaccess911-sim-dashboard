@@ -476,13 +476,26 @@ function initPriorityButtons() {
 // Dispatch Buttons
 function initDispatchButtons() {
   const dispatchButtons = document.querySelectorAll(".dispatch-btn");
+  const audioModal = document.getElementById("audioModal");
+  const audioModalText = document.getElementById("audioModalText");
+  const audioCloseBtn = document.getElementById("audioCloseBtn");
+  const audio988 = document.getElementById("audio988");
+  const audioLangLine = document.getElementById("audioLangLine");
+  
+  let currentAudio = null;
 
   dispatchButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       const buttonId = this.getAttribute("data-dispatch");
       console.log("Dispatch button clicked:", buttonId);
 
-      if (buttonId === "reset-simulation") {
+      if (buttonId === "988") {
+        // Play 988 audio
+        playAudio(audio988, "988 Audio");
+      } else if (buttonId === "lang-access") {
+        // Play Language Line audio
+        playAudio(audioLangLine, "Language Access Audio");
+      } else if (buttonId === "reset-simulation") {
         const confirmed = confirm("Are you sure you want to reset the simulation?");
         if (confirmed) {
           console.log("Simulation reset confirmed");
@@ -490,6 +503,55 @@ function initDispatchButtons() {
         }
       }
     });
+  });
+
+  function playAudio(audioElement, audioName) {
+    // Stop any currently playing audio
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // Set the current audio
+    currentAudio = audioElement;
+
+    // Update modal text
+    audioModalText.textContent = "Playing " + audioName + "...";
+
+    // Show modal
+    audioModal.classList.add("show");
+
+    // Play audio
+    audioElement.currentTime = 0;
+    audioElement.play();
+
+    // Hide modal when audio ends
+    audioElement.addEventListener("ended", function () {
+      audioModal.classList.remove("show");
+      currentAudio = null;
+    });
+  }
+
+  // Close button handler
+  audioCloseBtn.addEventListener("click", function () {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      currentAudio = null;
+    }
+    audioModal.classList.remove("show");
+  });
+
+  // Close modal when clicking outside
+  audioModal.addEventListener("click", function (e) {
+    if (e.target === audioModal) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+      audioModal.classList.remove("show");
+    }
   });
 }
 

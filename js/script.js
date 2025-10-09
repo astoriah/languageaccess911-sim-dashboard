@@ -243,7 +243,7 @@ function initLocationForm() {
     });
 
     // Display results
-    if (filteredAddresses.length > 0) {
+    if (filteredAddresses.length > 4) {
       displayAddressResults(filteredAddresses);
     } else {
       // Show "no results" message

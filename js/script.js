@@ -57,19 +57,70 @@ function initCallerInfoForm() {
 function initNavigation() {
   const navButtons = document.querySelectorAll(".code-btn");
   const subNavContainer = document.getElementById("subNavContainer");
-  const subNavItems = document.querySelectorAll(".sub-nav-item");
+  const subNavList = document.getElementById("subNavList");
   const idcCodeInput = document.getElementById("idc-code");
+
+  // Define sub-navigation items for each main button
+  const subNavData = {
+    cardiac: [
+      { id: "6M1", label: "6M1 Unconscious or not breathing" },
+      { id: "6M2", label: "6M2 Obvious DOA, Child" },
+      { id: "6R1", label: "6R1 Obvious DOA, cold and stiff, no CPR in progress" },
+      { id: "6R2", label: "6R2 Adult patient with DNR, caller refusing to do CPR" },
+    ],
+    choking: [
+      { id: "8M1", label: "8M1 Unconscious or not breathing" },
+      { id: "8M2", label: "8M2 Unable to talk or cry" },
+      { id: "8M3", label: "8M3 Turning blue" },
+    ],
+    "head-neck": [
+      { id: "12M1", label: "12M1 Unconscious or not breathing" },
+      { id: "12M2", label: "12M2 Decreased LOC, non-responsive to verbal or touch" },
+      { id: "12M3", label: "12M3" },
+      { id: "12M4", label: "12M4" },
+      { id: "12M5", label: "12M5" },
+    ],
+    mental: [
+      { id: "25M1", label: "25M1 Not alert" },
+      { id: "25M2", label: "25M2 Suicidal" },
+      { id: "25M3", label: "25M3 Threatening suicide" },
+    ],
+    poisoning: [
+      { id: "23M1", label: "23M1 Unconscious" },
+      { id: "23M2", label: "23M2 Not alert" },
+      { id: "23M3", label: "23M3 Overdose" },
+    ],
+    pregnancy: [
+      { id: "24M1", label: "24M1 Breech or cord" },
+      { id: "24M2", label: "24M2 Head visible/out" },
+      { id: "24M3", label: "24M3 Imminent delivery" },
+    ],
+    stroke: [
+      { id: "28M1", label: "28M1 Not alert" },
+      { id: "28M2", label: "28M2 Difficulty speaking" },
+      { id: "28M3", label: "28M3 Sudden numbness" },
+    ],
+    seizures: [
+      { id: "12M1", label: "12M1 Not breathing" },
+      { id: "12M2", label: "12M2 Continuous seizures" },
+      { id: "12M3", label: "12M3 Agonal breathing" },
+    ],
+    pediatrics: [
+      { id: "P1", label: "P1 Infant not breathing" },
+      { id: "P2", label: "P2 Child not alert" },
+      { id: "P3", label: "P3 Difficulty breathing" },
+    ],
+  };
 
   console.log("Initializing navigation...");
   console.log("Found nav buttons:", navButtons.length);
-  console.log("Found sub-nav items:", subNavItems.length);
 
   if (!navButtons.length) {
     console.error("No navigation buttons found!");
     return;
   }
 
-  if (!subNavContainer) {
+  if (!subNavContainer || !subNavList) {
     console.error("Sub-nav container not found!");
     return;
   }
@@ -95,14 +146,14 @@ function initNavigation() {
       state.navigation.activeSubNav = null;
 
       if (type === "nav") {
-        // Green button - show sub-nav
+        // Green button - show sub-nav with specific items
         console.log("Showing sub-nav for:", codeId);
+        
+        // Generate sub-nav items for this button
+        const subNavItems = subNavData[codeId] || [];
+        populateSubNav(subNavItems);
+        
         subNavContainer.style.display = "block";
-
-        // Remove active from sub-nav items
-        subNavItems.forEach(function (item) {
-          item.classList.remove("active");
-        });
       } else if (type === "direct") {
         // Red button - hide sub-nav and populate IDC directly
         console.log("Direct button clicked:", codeId);
@@ -123,33 +174,49 @@ function initNavigation() {
     });
   });
 
-  // Handle sub-navigation items - populate IDC code
-  subNavItems.forEach(function (item) {
-    item.addEventListener("click", function () {
-      const subNavId = this.getAttribute("data-subnav");
-      const idcCode = this.getAttribute("data-idc");
+  // Function to populate sub-navigation dynamically
+  function populateSubNav(items) {
+    // Clear existing items
+    subNavList.innerHTML = "";
 
-      console.log("Sub-nav item clicked:", subNavId, "IDC:", idcCode);
+    // Create new items
+    items.forEach(function (item) {
+      const li = document.createElement("li");
+      li.className = "sub-nav-item";
+      li.setAttribute("data-subnav", item.id);
+      li.setAttribute("data-idc", item.id);
+      li.textContent = item.label;
 
-      // Remove active from all sub-nav items
-      subNavItems.forEach(function (subItem) {
-        subItem.classList.remove("active");
+      // Add click handler
+      li.addEventListener("click", function () {
+        const subNavId = this.getAttribute("data-subnav");
+        const idcCode = this.getAttribute("data-idc");
+
+        console.log("Sub-nav item clicked:", subNavId, "IDC:", idcCode);
+
+        // Remove active from all sub-nav items
+        const allSubNavItems = subNavList.querySelectorAll(".sub-nav-item");
+        allSubNavItems.forEach(function (subItem) {
+          subItem.classList.remove("active");
+        });
+
+        // Add active to clicked item
+        this.classList.add("active");
+
+        // Update state
+        state.navigation.activeSubNav = subNavId;
+
+        // Populate IDC code field
+        if (idcCodeInput && idcCode) {
+          idcCodeInput.value = idcCode;
+          state.callerInfo.idcCode = idcCode;
+          console.log("IDC code populated:", idcCode);
+        }
       });
 
-      // Add active to clicked item
-      this.classList.add("active");
-
-      // Update state
-      state.navigation.activeSubNav = subNavId;
-
-      // Populate IDC code field
-      if (idcCodeInput && idcCode) {
-        idcCodeInput.value = idcCode;
-        state.callerInfo.idcCode = idcCode;
-        console.log("IDC code populated:", idcCode);
-      }
+      subNavList.appendChild(li);
     });
-  });
+  }
 
   console.log("Navigation initialized successfully");
 }

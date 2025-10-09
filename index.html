@@ -17,25 +17,11 @@
               <label for="caller-name">Caller Name</label>
             </div>
             <div class="input-row">
-              <input
-                id="caller-name"
-                type="text"
-                class="form-input"
-                aria-label="Caller Name"
-              />
+              <input id="caller-name" type="text" class="form-input" aria-label="Caller Name" />
               <label for="caller-number" class="inline-label">Caller Number</label>
-              <input
-                id="caller-number"
-                type="tel"
-                class="form-input"
-                aria-label="Caller Number"
-              />
+              <input id="caller-number" type="tel" class="form-input" aria-label="Caller Number" />
               <label for="type" class="inline-label">Type</label>
-              <select
-                id="type"
-                class="form-select"
-                aria-label="Call Type"
-              >
+              <select id="type" class="form-select" aria-label="Call Type">
                 <option value="">Select Type</option>
                 <option value="emergency">Emergency</option>
                 <option value="non-emergency">Non-Emergency</option>
@@ -44,12 +30,7 @@
                 <option value="police">Police</option>
               </select>
               <label for="idc-code" class="inline-label">IDC Code</label>
-              <input
-                id="idc-code"
-                type="text"
-                class="form-input idc-input"
-                aria-label="IDC Code"
-              />
+              <input id="idc-code" type="text" class="form-input idc-input" aria-label="IDC Code" />
             </div>
           </div>
         </form>
@@ -132,12 +113,12 @@
 
                       <div class="input-label">Apt. suite, etc.</div>
 
-                      <label for="comments" class="comments-label">Comments</label>
+                      <label for="comments" class="comments-label">Narrative</label>
                       <textarea
                         id="comments"
                         class="comments-textarea"
                         placeholder="Enter additional comments or notes..."
-                        aria-label="Comments"
+                        aria-label="Narrative"
                       ></textarea>
                     </fieldset>
                   </form>
@@ -154,10 +135,10 @@
 
                   <!-- Map and Priority -->
                   <div class="map-container">
-                    <iframe 
+                    <iframe
                       id="mapIframe"
-                      src="https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F" 
-                      width="640" 
+                      src="https://www.google.com/maps/d/u/0/embed?mid=1pwDgEjVgBxybEP34OjHv9x0VRGefprE&ehbc=2E312F"
+                      width="640"
                       height="480"
                       class="map-iframe"
                       frameborder="0"
@@ -165,9 +146,15 @@
                     ></iframe>
                     <div class="priority-group" role="group" aria-label="Priority selection">
                       <button class="priority-btn" data-priority="0" data-map="default" aria-pressed="false">P</button>
-                      <button class="priority-btn active" data-priority="1" data-map="priority1" aria-pressed="true">1</button>
-                      <button class="priority-btn" data-priority="2" data-map="priority2" aria-pressed="false">2</button>
-                      <button class="priority-btn" data-priority="3" data-map="priority3" aria-pressed="false">3</button>
+                      <button class="priority-btn active" data-priority="1" data-map="priority1" aria-pressed="true">
+                        1
+                      </button>
+                      <button class="priority-btn" data-priority="2" data-map="priority2" aria-pressed="false">
+                        2
+                      </button>
+                      <button class="priority-btn" data-priority="3" data-map="priority3" aria-pressed="false">
+                        3
+                      </button>
                     </div>
                   </div>
                 </div>

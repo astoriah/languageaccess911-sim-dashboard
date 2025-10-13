@@ -405,7 +405,7 @@ function initLocationForm() {
     });
 
     // Display results
-    if (filteredAddresses.length > 1) {
+    if (filteredAddresses.length >= 1) {
       displayAddressResults(filteredAddresses);
     } else {
       // Show "no results" message

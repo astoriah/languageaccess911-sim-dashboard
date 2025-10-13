@@ -169,7 +169,7 @@ body {
   width: 100%;
   max-width: 452px;
   height: 2px;
-  margin: 22px auto;
+  margin: 10px auto;
   border-top: 2px solid rgba(6, 82, 181, 1);
 }
 
@@ -209,7 +209,7 @@ body {
 .sub-nav-list {
   list-style: none;
   padding: 0;
-  margin: 16px 16px;
+  margin: 8px 16px;
 }
 
 .sub-nav-item {

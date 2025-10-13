@@ -490,6 +490,26 @@ function initDispatchButtons() {
   const audio988 = document.getElementById("audio988");
   const audioLangLine = document.getElementById("audioLangLine");
   
+  // Add error handling for audio files
+  audio988.addEventListener("error", function(e) {
+    console.error("Error loading 988 audio file:", e);
+    alert("Error loading 988 audio file. Please check the file path.");
+  });
+  
+  audioLangLine.addEventListener("error", function(e) {
+    console.error("Error loading Language Line audio file:", e);
+    alert("Error loading Language Line audio file. Please check the file path.");
+  });
+  
+  // Add loaded event to confirm audio is ready
+  audio988.addEventListener("loadeddata", function() {
+    console.log("988 audio loaded successfully");
+  });
+  
+  audioLangLine.addEventListener("loadeddata", function() {
+    console.log("Language Line audio loaded successfully");
+  });
+  
   let currentAudio = null;
 
   dispatchButtons.forEach(function (button) {
@@ -529,9 +549,20 @@ function initDispatchButtons() {
     // Show modal
     audioModal.classList.add("show");
 
-    // Play audio
+    // Play audio with error handling
     audioElement.currentTime = 0;
-    audioElement.play();
+    const playPromise = audioElement.play();
+    
+    if (playPromise !== undefined) {
+      playPromise
+        .then(function() {
+          console.log("Audio playback started successfully");
+        })
+        .catch(function(error) {
+          console.error("Error playing audio:", error);
+          audioModalText.textContent = "Error playing audio. Please check browser console.";
+        });
+    }
 
     // Hide modal when audio ends
     audioElement.addEventListener("ended", function () {

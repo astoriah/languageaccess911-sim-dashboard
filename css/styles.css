@@ -208,13 +208,13 @@ body {
   width: 100%;
   max-width: 452px;
   height: 2px;
-  margin: 10px auto;
+  margin: 5px auto;
   border-top: 2px solid rgba(6, 82, 181, 1);
 }
 
 .divider-thin {
   height: 1px;
-  margin: 10px 0;
+  margin: 5px 0;
   border-top: 1px solid rgba(190, 190, 190, 1);
 }
 

@@ -105,9 +105,12 @@ body {
   font-size: 16px;
   cursor: pointer;
   white-space: nowrap;
-  flex-shrink: 0;
   transition: background-color 0.2s ease;
   height: 50px;
+  position: fixed;
+  right: 20px;
+  top: 17px;
+  z-index: 100;
 }
 
 .idc-toggle-btn:hover {

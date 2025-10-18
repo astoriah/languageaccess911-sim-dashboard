@@ -24,7 +24,9 @@
               <input id="type" type="text" class="form-input" aria-label="Call Type" />
               <label for="idc-code" class="inline-label idc-toggle-target">IDC Code</label>
               <input id="idc-code" type="text" class="form-input idc-input idc-toggle-target" aria-label="IDC Code" />
-              <button type="button" id="idcToggleBtn" class="idc-toggle-btn" aria-label="Toggle IDC Codes">Show IDC Codes</button>
+              <button type="button" id="idcToggleBtn" class="idc-toggle-btn" aria-label="Toggle IDC Codes">
+                Show IDC Codes
+              </button>
             </div>
           </div>
         </form>
@@ -69,9 +71,8 @@
               <ul class="sub-nav-list" id="subNavList">
                 <!-- Sub-nav items will be populated dynamically by JavaScript -->
               </ul>
+              <div class="divider-thick"></div>
             </div>
-
-            <div class="divider-thick"></div>
 
             <!-- Content Section (always visible, dynamically populated) -->
             <div class="content-container" id="contentContainer">
@@ -210,10 +211,10 @@
 
     <!-- Hidden Audio Elements -->
     <audio id="audio988" preload="auto">
-      <source src="public/audio/988.mp3" type="audio/mpeg">
+      <source src="public/audio/988.mp3" type="audio/mpeg" />
     </audio>
     <audio id="audioLangLine" preload="auto">
-      <source src="public/audio/Language_Line.mp3" type="audio/mpeg">
+      <source src="public/audio/Language_Line.mp3" type="audio/mpeg" />
     </audio>
 
     <script src="js/script.js"></script>

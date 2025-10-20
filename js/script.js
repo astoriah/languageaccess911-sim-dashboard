@@ -1052,7 +1052,7 @@ function initDispatchButtons() {
     });
   });
 
-  /* COMMENTED OUT: Audio modal feature
+ Audio modal feature
   function playAudio(audioElement) {
     // Stop any currently playing audio
     if (currentAudio) {
@@ -1085,8 +1085,8 @@ function initDispatchButtons() {
   }
 }
 
-// Reset simulation
-function resetSimulation() {
+  // Reset simulation
+  function resetSimulation() {
   // Reset state
   state.callerInfo = {
     callerName: "",

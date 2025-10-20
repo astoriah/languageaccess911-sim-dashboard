@@ -827,6 +827,50 @@ function initLocationForm() {
       "1518 SUMMIT AVE",
       "1526 SUMMIT AVE (501 E PINE ST PARKING)",
     ],
+    4: [
+      "1610 E THOMAS ST",
+      "1610 THOMAS ST",
+      "1610 THOMPSON AVE",
+      "1618 E THOMAS ST",
+      "1618 THOMAS ST (TIMELESS APTS)",
+      "1618 THOMPSON AVE",
+      "1620 E THOMAS ST",
+      "1620 THOMAS ST",
+      "1620 THOMPSON AVE",
+      "1633 E THOMAS ST",
+      "1633 THOMAS ST",
+      "1633 THOMPSON AVE",
+      "1713 E THOMAS ST",
+      "1713 THOMAS ST",
+      "1713 THOMPSON AVE",
+      "1714 E THOMAS ST",
+      "1714 THOMAS ST",
+      "1714 THOMPSON AVE",
+      "1717 E THOMAS ST",
+      "1717 THOMAS ST (SOMOS CAFE)",
+      "1717 THOMPSON AVE",
+      "1722 E THOMAS ST",
+      "1722 THOMAS ST",
+      "1722 THOMPSON AVE",
+      "1730 E THOMAS ST",
+      "1730 THOMAS ST",
+      "1730 THOMPSON AVE",
+      "1807 E THOMAS ST",
+      "1807 THOMAS ST",
+      "1807 THOMPSON AVE",
+      "1808 E THOMAS ST (RUGGED COUNTRY LODGE)",
+      "1808 THOMAS ST",
+      "1808 THOMPSON AVE",
+      "1811 E THOMAS ST",
+      "1811 THOMAS ST (SUNSET PROPERTIES)",
+      "1811 THOMPSON AVE",
+      "1820 E THOMAS ST (CORYELL COURT)",
+      "1820 THOMAS ST",
+      "1820 THOMPSON AVE",
+      "1821 E THOMAS ST (THOMAS MANOR)",
+      "1821 THOMAS ST",
+      "1821 THOMPSON AVE",
+    ],
   };
 
   streetAddressInput.addEventListener("input", function (e) {
@@ -863,13 +907,16 @@ function initLocationForm() {
       case 3:
         currentDatabase = addressDatabases[3];
         break;
+      case 4:
+        currentDatabase = addressDatabases[4];
+        break;
       default:
         currentDatabase = addressDatabases.P;
     }
 
     console.log(
       "Using scenario:",
-      state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : "P",
+      state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : state.priority === 4 ? "4" : "P",
     );
 
     // Filter addresses based on search query
@@ -920,6 +967,7 @@ function initPriorityButtons() {
     priority1: "https://www.google.com/maps/d/u/0/embed?mid=1Abzt71sTWbeySFxRCFPCT5s3yW7aGzg&ehbc=2E312F&noprof=1",
     priority2: "https://www.google.com/maps/d/u/0/embed?mid=1lQxqZSTYZjHc4C1ylMFlL52RmsoecnE&ehbc=2E312F&noprof=1",
     priority3: "https://www.google.com/maps/d/u/0/embed?mid=1kZ6pyuGSbwXmO7p1yduXuveGFRfd0as&ehbc=2E312F&noprof=1",
+    priority4: "https://www.google.com/maps/d/u/0/embed?mid=1NDdxeO7eDowM_wxpxr0e9SBFFPJZsc0&ehbc=2E312F&noprof=1",
   };
 
   console.log("Initializing priority buttons...");

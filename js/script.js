@@ -1052,7 +1052,7 @@ function initDispatchButtons() {
     });
   });
 
- Audio modal feature
+  // Audio playback function (no modal)
   function playAudio(audioElement) {
     // Stop any currently playing audio
     if (currentAudio) {

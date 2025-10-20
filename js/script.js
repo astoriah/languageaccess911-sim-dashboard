@@ -1006,10 +1006,6 @@ function initPriorityButtons() {
 function initDispatchButtons() {
   const dispatchButtons = document.querySelectorAll(".dispatch-btn");
   
-  /* COMMENTED OUT: Audio modal feature - may be restored later
-  const audioModal = document.getElementById("audioModal");
-  const audioModalText = document.getElementById("audioModalText");
-  const audioCloseBtn = document.getElementById("audioCloseBtn");
   const audio988 = document.getElementById("audio988");
   const audioLangLine = document.getElementById("audioLangLine");
   
@@ -1034,23 +1030,19 @@ function initDispatchButtons() {
   });
   
   let currentAudio = null;
-  */
 
   dispatchButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       const buttonId = this.getAttribute("data-dispatch");
       console.log("Dispatch button clicked:", buttonId);
 
-      /* COMMENTED OUT: Audio modal feature
       if (buttonId === "988") {
         // Play 988 audio
-        playAudio(audio988, "988 Audio");
+        playAudio(audio988);
       } else if (buttonId === "lang-access") {
         // Play Language Line audio
-        playAudio(audioLangLine, "Language Access Audio");
-      } else
-      */
-      if (buttonId === "reset-simulation") {
+        playAudio(audioLangLine);
+      } else if (buttonId === "reset-simulation") {
         const confirmed = confirm("Are you sure you want to reset the simulation?");
         if (confirmed) {
           console.log("Simulation reset confirmed");
@@ -1061,7 +1053,7 @@ function initDispatchButtons() {
   });
 
   /* COMMENTED OUT: Audio modal feature
-  function playAudio(audioElement, audioName) {
+  function playAudio(audioElement) {
     // Stop any currently playing audio
     if (currentAudio) {
       currentAudio.pause();
@@ -1070,12 +1062,6 @@ function initDispatchButtons() {
 
     // Set the current audio
     currentAudio = audioElement;
-
-    // Update modal text
-    audioModalText.textContent = "Playing " + audioName + "...";
-
-    // Show modal
-    audioModal.classList.add("show");
 
     // Play audio with error handling
     audioElement.currentTime = 0;
@@ -1088,39 +1074,15 @@ function initDispatchButtons() {
         })
         .catch(function(error) {
           console.error("Error playing audio:", error);
-          audioModalText.textContent = "Error playing audio. Please check browser console.";
+          alert("Error playing audio. Please check browser console.");
         });
     }
 
-    // Hide modal when audio ends
+    // Reset current audio when ended
     audioElement.addEventListener("ended", function () {
-      audioModal.classList.remove("show");
       currentAudio = null;
     });
   }
-
-  // Close button handler
-  audioCloseBtn.addEventListener("click", function () {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-      currentAudio = null;
-    }
-    audioModal.classList.remove("show");
-  });
-
-  // Close modal when clicking outside
-  audioModal.addEventListener("click", function (e) {
-    if (e.target === audioModal) {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-      }
-      audioModal.classList.remove("show");
-    }
-  });
-  */
 }
 
 // Reset simulation

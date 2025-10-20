@@ -1005,6 +1005,8 @@ function initPriorityButtons() {
 // Dispatch Buttons
 function initDispatchButtons() {
   const dispatchButtons = document.querySelectorAll(".dispatch-btn");
+  
+  /* COMMENTED OUT: Audio modal feature - may be restored later
   const audioModal = document.getElementById("audioModal");
   const audioModalText = document.getElementById("audioModalText");
   const audioCloseBtn = document.getElementById("audioCloseBtn");
@@ -1032,19 +1034,23 @@ function initDispatchButtons() {
   });
   
   let currentAudio = null;
+  */
 
   dispatchButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       const buttonId = this.getAttribute("data-dispatch");
       console.log("Dispatch button clicked:", buttonId);
 
+      /* COMMENTED OUT: Audio modal feature
       if (buttonId === "988") {
         // Play 988 audio
         playAudio(audio988, "988 Audio");
       } else if (buttonId === "lang-access") {
         // Play Language Line audio
         playAudio(audioLangLine, "Language Access Audio");
-      } else if (buttonId === "reset-simulation") {
+      } else
+      */
+      if (buttonId === "reset-simulation") {
         const confirmed = confirm("Are you sure you want to reset the simulation?");
         if (confirmed) {
           console.log("Simulation reset confirmed");
@@ -1054,6 +1060,7 @@ function initDispatchButtons() {
     });
   });
 
+  /* COMMENTED OUT: Audio modal feature
   function playAudio(audioElement, audioName) {
     // Stop any currently playing audio
     if (currentAudio) {
@@ -1113,6 +1120,7 @@ function initDispatchButtons() {
       audioModal.classList.remove("show");
     }
   });
+  */
 }
 
 // Reset simulation

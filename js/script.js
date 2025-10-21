@@ -630,23 +630,12 @@ function initNavigation() {
           contentArea.innerHTML = contentData[codeId];
         }
       } else if (type === "direct") {
-        // Red button - populate TYPE but leave IDC Code blank
-        console.log("Direct button clicked:", codeId);
+        // CPR button - only show content, do NOT change Type or IDC Code fields
+        console.log("CPR button clicked:", codeId);
         subNavList.innerHTML = "";
         
-        // Populate TYPE field with button text
-        if (typeSelect) {
-          typeSelect.value = buttonText;
-          state.callerInfo.type = buttonText;
-        }
-        
-        // Clear IDC Code for CPR buttons
-        if (idcCodeInput) {
-          idcCodeInput.value = "";
-          state.callerInfo.idcCode = "";
-        }
-        
-        // Show content for this button
+        // Do NOT modify Type or IDC Code fields - keep existing values
+        // Only show content for this button
         if (contentData[codeId]) {
           contentArea.innerHTML = contentData[codeId];
         }

@@ -1,4 +1,7 @@
 // State management
+// Track clicked dispatch buttons
+const clickedDispatchButtons = new Set();
+
 const state = {
   callerInfo: {
     callerName: "",
@@ -1044,6 +1047,12 @@ function initDispatchButtons() {
           resetSimulation();
         }
       }
+      
+      // Change background color to warning-btn color if not already clicked
+      if (buttonId !== "reset-simulation" && !clickedDispatchButtons.has(buttonId)) {
+        clickedDispatchButtons.add(buttonId);
+        this.style.backgroundColor = "rgba(238, 175, 57, 1)";
+      }
     });
   });
 
@@ -1145,6 +1154,13 @@ function initDispatchButtons() {
   // Clear sub-nav content and content area
   document.getElementById("subNavList").innerHTML = "";
   document.getElementById("contentArea").innerHTML = "";
+  
+  // Reset dispatch button colors
+  clickedDispatchButtons.clear();
+  const dispatchButtons = document.querySelectorAll(".dispatch-btn");
+  dispatchButtons.forEach(function (btn) {
+    btn.style.backgroundColor = "";
+  });
 
   console.log("Simulation reset complete");
 }

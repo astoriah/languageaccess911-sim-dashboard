@@ -891,13 +891,19 @@ function initLocationForm() {
         currentDatabase = addressDatabases[1];
         break;
       case 2:
-        currentDatabase = addressDatabases[2];
+        currentDatabase = addressDatabases[1]; // Same as 1
         break;
       case 3:
-        currentDatabase = addressDatabases[3];
+        currentDatabase = addressDatabases[2]; // Previous 2
         break;
       case 4:
-        currentDatabase = addressDatabases[4];
+        currentDatabase = addressDatabases[2]; // Previous 2
+        break;
+      case 5:
+        currentDatabase = addressDatabases[3]; // Previous 3
+        break;
+      case 6:
+        currentDatabase = addressDatabases[4]; // Previous 4
         break;
       default:
         currentDatabase = addressDatabases.P;
@@ -905,7 +911,7 @@ function initLocationForm() {
 
     console.log(
       "Using scenario:",
-      state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : state.priority === 4 ? "4" : "P",
+      state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : state.priority === 4 ? "4" : state.priority === 5 ? "5" : state.priority === 6 ? "6" : "P",
     );
 
     // Filter addresses based on search query

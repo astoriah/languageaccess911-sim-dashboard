@@ -15,5 +15,5 @@ Technologies Used:
 - Google MyMaps 
 - GitHub Pages (for deployment)
 
-{See the dashboard at:](https://astoriah.github.io/languageaccess911-sim-dashboard/)
+See the dashboard at: [(https://astoriah.github.io/languageaccess911-sim-dashboard/)]
 

@@ -58,10 +58,17 @@ export function initDispatchButtons() {
         }
       }
       
-      // Change background color to warning-btn color if not already clicked
-      if (buttonId !== "reset-simulation" && !clickedDispatchButtons.has(buttonId)) {
-        clickedDispatchButtons.add(buttonId);
-        this.style.backgroundColor = "rgba(238, 175, 57, 1)";
+      // Toggle background color between original blue and warning yellow
+      if (buttonId !== "reset-simulation") {
+        if (clickedDispatchButtons.has(buttonId)) {
+          // Currently yellow, turn back to blue (original)
+          clickedDispatchButtons.delete(buttonId);
+          this.style.backgroundColor = "";
+        } else {
+          // Currently blue, turn to yellow
+          clickedDispatchButtons.add(buttonId);
+          this.style.backgroundColor = "rgba(238, 175, 57, 1)";
+        }
       }
     });
   });

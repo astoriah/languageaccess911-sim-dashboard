@@ -5,6 +5,8 @@ The dashboard simulates real-time decision-making scenarios for 911 call operato
 - Evaluate call operator workflows
 - Collect user interaction data
 
+![Dashboard Screenshot](public/Dashboard_Screenshot.png)
+
 Features: 
 - Interactive UI mimicking a 911 operator dashboard
 - Customizable configurations for different emergency scenarios which includes custom addresses and Google Maps integration
@@ -15,5 +17,7 @@ Technologies Used:
 - Google MyMaps 
 - GitHub Pages (for deployment)
 
-See the dashboard at: [(https://astoriah.github.io/languageaccess911-sim-dashboard/)]
+See the dashboard at: [https://astoriah.github.io/languageaccess911-sim-dashboard/]
+
+
 

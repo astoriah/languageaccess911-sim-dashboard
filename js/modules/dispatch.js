@@ -16,6 +16,7 @@ export function initDispatchButtons() {
   
   const audio988 = document.getElementById("audio988");
   const audioLangLine = document.getElementById("audioLangLine");
+  const audioNowConnecting = document.getElementById("audioNowConnecting");
   
   // Add error handling for audio files
   audio988.addEventListener("error", function(e) {
@@ -28,6 +29,11 @@ export function initDispatchButtons() {
     alert("Error loading Language Line audio file. Please check the file path.");
   });
   
+  audioNowConnecting.addEventListener("error", function(e) {
+    console.error("Error loading Now Connecting audio file:", e);
+    alert("Error loading Now Connecting audio file. Please check the file path.");
+  });
+  
   // Add loaded event to confirm audio is ready
   audio988.addEventListener("loadeddata", function() {
     console.log("988 audio loaded successfully");
@@ -35,6 +41,10 @@ export function initDispatchButtons() {
   
   audioLangLine.addEventListener("loadeddata", function() {
     console.log("Language Line audio loaded successfully");
+  });
+  
+  audioNowConnecting.addEventListener("loadeddata", function() {
+    console.log("Now Connecting audio loaded successfully");
   });
   
   let currentAudio = null;
@@ -56,6 +66,9 @@ export function initDispatchButtons() {
           console.log("Simulation reset confirmed");
           resetSimulation();
         }
+      } else {
+        // Play Now Connecting audio for all other dispatch buttons
+        playAudio(audioNowConnecting);
       }
       
       // Toggle background color between original blue and warning yellow

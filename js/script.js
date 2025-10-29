@@ -13,7 +13,7 @@
  * - /js/modules/ - Functional modules (state, forms, navigation, etc.)
  * - /js/config/ - Static configuration data (addresses, content, URLs)
  * - /css/ - Styling
- * - /public/ - Static assets (audio files)
+ * - /assets/ - Static assets (audio files)
  * 
  * Module Structure:
  * - state.js: Centralized application state management

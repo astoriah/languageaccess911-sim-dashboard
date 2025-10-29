@@ -387,9 +387,124 @@ export const contentData = {
     
   `,
   "choking-pai": `
- 
+    <h3>Choking PAI</h3>
+    
+    <h4>CHOKING - ADULT</h4>
+    <p><strong>If person is UNCONSCIOUS, go to CPR/Adult Instructions.</strong></p>
+    <p><strong>If person is CONSCIOUS:</strong></p>
+    <ol>
+      <li>Is the person able to TALK or COUGH:</li>
+    </ol>
+    <ul>
+      <li><strong>(If YES):</strong> STOP</li>
+      <li><strong>(If NO):</strong> Listen carefully. I'll tell you what to do next.</li>
+    </ul>
+    <ol>
+      <li>Stand BEHIND the person. Wrap your arms AROUND the waist.</li>
+      <li>Make a fist with ONE hand and place it against the STOMACH, in the MIDDLE slightly ABOVE the navel.</li>
+      <li>GRASP your fist with the other hand.</li>
+      <li>PRESS into the stomach with QUICK, UPWARD thrusts. Repeat thrusts until the item is expelled.</li>
+    </ol>
+    <p><strong>If the person becomes unconscious, go to CPR/Adult Instructions.</strong></p>
+
+    <h4>CHOKING – CHILD (1-8 Yrs.)</h4>
+    <p><strong>If child is UNCONSCIOUS, go to CPR/Child Instructions.</strong></p>
+    <p><strong>If child is CONSCIOUS:</strong></p>
+    <ol>
+      <li>Is the child able to TALK or COUGH:</li>
+    </ol>
+    <ul>
+      <li><strong>(If YES):</strong> STOP.</li>
+      <li><strong>(If NO):</strong> Listen carefully. I'll tell you what to do next.</li>
+    </ul>
+    <ol>
+      <li>Stand BEHIND the child. Wrap your arms AROUND the waist.</li>
+      <li>Make a fist with ONE hand and place it against the STOMACH, in the MIDDLE slightly ABOVE the navel.</li>
+      <li>GRASP your fist with the other hand.</li>
+      <li>PRESS into the stomach with QUICK, UPWARD thrusts. Repeat thrusts until the item is expelled.</li>
+    </ol>
+    <p><strong>If the child becomes unconscious, go to CPR/Child Instructions.</strong></p>
+
+    <h4>CHOKING – INFANT (0-12 months)</h4>
+    <p><strong>If child is UNCONSCIOUS, go to CPR/Infant Instructions.</strong></p>
+    <p><strong>If child is CONSCIOUS:</strong></p>
+    <ol>
+      <li>Is the child able to CRY or COUGH:</li>
+    </ol>
+    <ul>
+      <li><strong>(If YES):</strong> STOP.</li>
+      <li><strong>(If NO):</strong> Listen carefully. I'll tell you what to do next.</li>
+    </ul>
+    <ol>
+      <li>Position the infant FACE DOWN on your forearm, supporting the head and jaw with your hand.</li>
+      <li>Give 5 BACK BLOWS between the shoulder blades with the heel of your hand.</li>
+      <li>Turn the infant FACE UP on your other forearm.</li>
+      <li>Give 5 CHEST THRUSTS using two fingers on the center of the chest, just below the nipple line.</li>
+      <li>Continue alternating 5 back blows and 5 chest thrusts until the item is expelled.</li>
+    </ol>
+    <p><strong>If the child becomes unconscious, go to CPR/Infant Instructions.</strong></p>
   `,
   "childbirth-pai": `
- 
+    <h3>Childbirth PAI</h3>
+    <ol>
+      <li>Has she had a baby before?</li>
+      <li>How many minutes between her contractions? <em>Contractions with less than 2 minutes between them (especially if the woman feels a strong desire to push), indicate birth may be imminent.</em></li>
+      <li><strong>If there are more than 2 minutes between contractions:</strong> Listen carefully. I'll tell you what to do. Have her LIE in a comfortable position on her LEFT SIDE and take DEEP breaths. I have advised the dispatcher to send help.</li>
+      <li><strong>If contractions are less than 2 minutes between contractions and if there is a strong desire to push:</strong> Listen carefully, I'll tell you what to do.
+        <ul>
+          <li>Get the phone NEXT to her, if you can.</li>
+          <li>Ask her to LIE on her BACK and relax, breathing DEEPLY through her MOUTH.</li>
+          <li>Ask her to remove underwear and BEND her KNEES.</li>
+          <li>Place clean towels UNDER her BUTTOCKS and have additional clean towels ready.</li>
+        </ul>
+      </li>
+      <li><strong>If she starts to deliver (baby's head appears):</strong> Listen carefully. I'll tell you what to do.
+        <ul>
+          <li>The baby's head should deliver first. CRADLE it and the rest of the baby as it is delivered. DO NOT PUSH OR PULL.</li>
+          <li>There will be water and blood with delivery. THIS IS NORMAL.</li>
+          <li>When the baby is delivered, CLEAN out its MOUTH and NOSE with a CLEAN, DRY cloth.</li>
+          <li>Do NOT attempt to CUT or PULL the cord.</li>
+          <li>Wrap the baby in a clean towel, or whatever is handy, and place it between mother's legs.</li>
+          <li>Massage mother's lower abdomen very gently.</li>
+          <li>If the baby does NOT start breathing on its own, rub its back or gently slap the soles of its feet. If the baby DOESN'T begin breathing IMMEDIATELY, come back to the phone.</li>
+          <li><strong>IF THE BABY DOES NOT BEGIN BREATHING ON ITS OWN: GO TO CPR/Neonate Instructions.</strong></li>
+          <li>If/When the placenta (tissue at the other end of the umbilical cord) is delivered, WRAP IT.</li>
+          <li>Keep the placenta LEVEL with or SLIGHTLY ABOVE the baby.</li>
+          <li>If possible, STAY ON THE LINE.</li>
+        </ul>
+      </li>
+      <li><strong>If there are complications (leg, arm, buttocks or umbilical cord presenting):</strong> REASSURE the mother. Tell her you have dispatched aid.</li>
+    </ol>
+
+    <h4>Pre-Arrival Instructions for Common Complications:</h4>
+    
+    <h5>Postpartum Hemorrhage</h5>
+    <p><em>(external bleeding from the vagina, persistent abdominal rigidity or tenderness and signs of shock.)</em></p>
+    <ul>
+      <li>Firmly massage the lower abdomen in a circular motion.</li>
+      <li>(Treat for shock): Keep the mother warm and elevate legs.</li>
+      <li>Place a sanitary napkin over the vaginal opening.</li>
+    </ul>
+
+    <h5>Breech Presentation</h5>
+    <p><em>(If a foot or arm presents, delivery is not possible in the field.)</em></p>
+    <ul>
+      <li>Support the baby with your hands, allowing the buttocks and trunk to deliver spontaneously.</li>
+      <li>Support the legs and trunk of the infant. Never attempt to pull baby from vagina by legs or trunk.</li>
+      <li>Raise the infant's body up until its face protrudes.</li>
+    </ul>
+    <p><strong>Did the baby deliver?</strong></p>
+    <ul>
+      <li><strong>(If unsuccessful, provide an airway for the baby):</strong> Push the vaginal wall away from baby's face.</li>
+      <li>Keep doing that until help arrives.</li>
+      <li>If the head does not deliver within 3 minutes of trying the above: Maintain the airway.</li>
+      <li>Don't pull or touch the extremity. Place the mother with legs and buttocks elevated (Put something under her buttocks to elevate).</li>
+    </ul>
+
+    <h5>Prolapsed Umbilical Cord</h5>
+    <ul>
+      <li>Place the mother on her knees with her head resting on the floor and her buttocks in the air. Do not permit her to lie flat.</li>
+      <li>Attempt to keep pressure off the cord.</li>
+    </ul>
   `,
 };

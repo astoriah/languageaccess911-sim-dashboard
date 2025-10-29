@@ -46,7 +46,9 @@ export const subNavData = {
     { id: "14R1", label: "14R1 - Intentional/accidental, with over the counter (OTC) meds" },
     { id: "14R2", label: "14R2 - No verifiable info from RP" },
     { id: "14R3", label: "14R3 - Reported O.D., patient denial or unknown substance taken" },
-    { id: "14R7", label: "14R7 - Breathing difficulty / Acute alcohol and/or drug intoxication (responsive)" },
+    { id: "14R7", label: "14R7 - Breathing difficulty" },
+    { id: "14R8", label: "14R8 - Acute alcohol and/or drug intoxication (responsive)" },
+
   ],
   pregnancy: [
     { id: "15M1", label: "15M1 - Unconscious or not breathing" },
@@ -74,7 +76,7 @@ export const subNavData = {
   ],
   stroke: [
     { id: "18M1", label: "18M1 - Unconscious or not breathing" },
-    { id: "18M2", label: "18M2 - Sudden onset of headache with: slurred speech/blurred vision/weakness/vomiting" },
+    { id: "18M2", label: "18M2 - Sudden onset of headache with: slurred speech, blurred/double vision, weakness/paralysis, vomiting" },
     { id: "18M3", label: "18M3 - Decreased LOC, non-responsive to verbal or touch" },
     { id: "18R1", label: "18R1 - Unilateral weakness, paralysis" },
     { id: "18R2", label: "18R2 - Weakness, numbness, or unable to stand/walk" },

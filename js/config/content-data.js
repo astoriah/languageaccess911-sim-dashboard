@@ -282,7 +282,7 @@ export const contentData = {
       <li>If febrile seizure, remove clothing to cool patient.</li>
     </ul>
   `,
-  "cpr-adult": `
+  "cpr-pai": `
     <h3>CPR PAI - ADULT</h3>
     <ol>
       <li>Does anyone there know CPR? (Trained bystanders may still need instructions. Ask!)</li>
@@ -386,10 +386,10 @@ export const contentData = {
     </ul>
     
   `,
-  "cpr-child": `
+  "choking-pai": `
  
   `,
-  "cpr-infant": `
+  "childbirth-pai": `
  
   `,
 };

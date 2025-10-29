@@ -1,6 +1,6 @@
 /**
  * Content Data Configuration
- * 
+ *
  * HTML content for each emergency type, including:
  * - Vital assessment points
  * - Pre-arrival instructions
@@ -29,7 +29,7 @@ export const contentData = {
       <li>takes breath now and then</li>
       <li>occasional breathing</li>
     </ul>
-    <p><strong>If RP cannot tell if the patient is breathing normally, assume the patient is not breathing normally, go directly to age-appropriate CPR PAI.</strong></p>
+    <p><strong>**If RP cannot tell if the patient is breathing normally, assume the patient is not breathing normally, go directly to age-appropriate CPR PAI.</strong></p>
     <h4>Pre-Arrival Instructions</h4>
     <ul>
       <li>If unconscious and not breathing normally, go directly to age-appropriate CPR PAI</li>
@@ -51,7 +51,9 @@ export const contentData = {
     <h4>Pre-Arrival Instructions</h4>
     <ul>
       <li>If patient is unable to talk or cry (infant), go directly to age-appropriate Choking PAI</li>
-      <li>If patient is able to breathe, talk, or cry (infant): monitor</li>
+      <li>If patient is able to breathe, talk, or cry (infant):</li>
+      <li>Allow position of comfort</li>
+      <li>Encourage coughing</li>
     </ul>
   `,
   "head-neck": `
@@ -138,6 +140,13 @@ export const contentData = {
       <li>If yes, how many?</li>
       <li>How long ago did they ingest the substance?</li>
     </ul>
+    <h5>Short Report</h5>
+    <ul>
+      <li>Is the patient violent?</li>
+      <li>Does the patient have access to a weapon?</li>
+      <li>Is the patient acting normally?</li>
+      <li>If not, what is different?</li>
+    </ul>
     <h4>Pre-Arrival Instructions</h4>
     <ul>
       <li>If unconscious and breathing normally, go directly to Unconscious/Breathing PAI.</li>
@@ -147,13 +156,6 @@ export const contentData = {
       <li>Don't place patient in bath or shower.</li>
       <li>Nothing by mouth.</li>
       <li>Gather patient meds.</li>
-    </ul>
-    <h4>Assessment Questions</h4>
-    <ul>
-      <li>Is the patient violent?</li>
-      <li>Does the patient have access to a weapon?</li>
-      <li>Is the patient acting normally?</li>
-      <li>If not, what is different?</li>
     </ul>
   `,
   pregnancy: `
@@ -306,8 +308,7 @@ export const contentData = {
       <li>GIVE TWO BREATHS OF AIR (come back to the phone).</li>
       <li>***Then back to compression instructions (#4 above) but give 30 compressions between breaths.***</li>
     </ul>
-    <h4>Foreign Body Airway Obstruction:</h4>
-    <p>(confirmed choking now unconscious)</p>
+    <h4>Foreign Body Airway Obstruction: (confirmed choking now unconscious)</h4>
     <ul>
       <li>After each set of 30 compressions "Look inside the mouth, remove any obvious obstruction". If object is removed give two ventilations between each set of 30 compressions. If object not seen continue with compressions.</li>
     </ul>
@@ -315,9 +316,9 @@ export const contentData = {
     <p>IF CALLER REPORTS VOMITING, INSTRUCT CALLER TO:</p>
     <ul>
       <li>Turn their head to one side.</li>
+      <li>Sweep out contents with your fingers before you resume</li>
     </ul>
-  `,
-  "cpr-child": `
+    
     <h3>CPR PAI – CHILD (1-8 Yrs.)</h3>
     <ol>
       <li>Does anyone there know CHILD CPR? (Trained bystanders may still need instructions. Ask!)</li>
@@ -349,8 +350,7 @@ export const contentData = {
       <li>Turn their head to one side.</li>
       <li>Sweep it all out with your fingers before you resume ventilations.</li>
     </ul>
-  `,
-  "cpr-infant": `
+
     <h3>CPR PAI – INFANT (0-12 months)</h3>
     <ol>
       <li>Does anyone there know INFANT CPR? (Trained bystanders may still need instructions. Ask!)</li>
@@ -384,5 +384,12 @@ export const contentData = {
       <li>Turn their head to the side.</li>
       <li>Sweep it out with your fingers before you resume ventilations. (Do not attempt to get anything out of the mouth that you cannot see - No Blind finger sweeps).</li>
     </ul>
+    
+  `,
+  "cpr-child": `
+ 
+  `,
+  "cpr-infant": `
+ 
   `,
 };

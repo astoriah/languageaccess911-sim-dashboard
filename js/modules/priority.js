@@ -8,7 +8,7 @@
  */
 
 import { state } from './state.js';
-import { mapUrls } from '../config/map-urls.js';
+import { mapUrls } from '../idc-codes/map-urls.js';
 
 export function initPriorityButtons() {
   const priorityButtons = document.querySelectorAll(".priority-btn");

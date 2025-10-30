@@ -10,7 +10,7 @@
  */
 
 import { state } from './state.js';
-import { addressDatabases } from '../config/address-databases.js';
+import { addressDatabases } from '../idc-codes/address-databases.js';
 
 export function initLocationForm() {
   const streetAddressInput = document.getElementById("street-address");

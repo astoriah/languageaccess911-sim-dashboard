@@ -9,8 +9,8 @@
  */
 
 import { state } from './state.js';
-import { subNavData } from '../config/navigation-data.js';
-import { contentData } from '../config/content-data.js';
+import { subNavData } from '../idc-codes/navigation-data.js';
+import { contentData } from '../idc-codes/content-data.js';
 
 export function initNavigation() {
   const navButtons = document.querySelectorAll(".code-btn");

@@ -17,7 +17,7 @@ Technologies Used:
 
 See the dashboard at: [https://astoriah.github.io/languageaccess911-sim-dashboard/]
 
-![Dashboard Screenshot](public/Dashboard_Screenshot.png)
+![Dashboard Screenshot](assets/Dashboard_Screenshot.png)
 
 
 

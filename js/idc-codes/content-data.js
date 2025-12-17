@@ -59,24 +59,37 @@ export const contentData = {
   "fall-accident": `
     <h3>Fall/Accident</h3>
     <h4>Vital Points</h4>
-    <p><strong>Ask to speak directly to the patient if possible!</strong></p>
     <h5>Medic:</h5>
     <ul>
-      <li>Did the headache come on suddenly or gradually?</li>
-      <li>Does the patient have any vision problems?</li>
+      <li>Is the patient speaking normally?</li>
+      <li>Is the patient having any trouble breathing?</li>
       <li>Can the patient respond to you and follow simple commands?</li>
       <li>Can the patient answer your questions?</li>
-      <li>Does the patient know where they are and who they are?</li>
-      <li>Is the headache different than headaches the patient has had in the past?</li>
-      <li>What was the patient doing when the headache started?</li>
-      <li>How is the patient acting? If unusual, what is different about them?</li>
-      <li>How does the patient look?</li>
+      <li>Is the patient combative (wanting to fight you)?</li>
+      <li>How far did the patient fall?</li>
+      <li>What did the patient land on?</li>
+      <li>What part of the body has been amputated?</li>
+      <li>Do you have the amputated parts?</li>
+      <li>Is the patient able to move their fingers and toes?</li>
+      <li>Is the patient bleeding?</li>
+      <li>If yes, from where?</li>
+    </ul>
+    <h5>BLS Red:</h5>
+    <ul>
+      <li>Are there any obvious injuries?</li>
+      <li>Did the patient complain of any discomfort or illness just prior to the fall?</li>
+      <li>If accident, what part of the body has been injured?</li>
     </ul>
     <h4>Pre-Arrival Instructions</h4>
     <ul>
+      <li>If unconscious and breathing normally, go directly to Unconscious/Breathing (trauma) PAI</li>
+      <li>If machinery, turn it off. (Try to locate maintenance).</li>
+      <li>Do not move patient (if no hazards).</li>
+      <li>Cover patient w/blanket and keep calm.</li>
       <li>Nothing by mouth.</li>
-      <li>Allow patient to find position of comfort.</li>
-      <li>Gather patient meds.</li>
+      <li>If external bleeding, use clean cloth and apply pressure directly over it. DO NOT REMOVE, apply additional cloths on top if needed.</li>
+      <li>Locate any amputated parts or skin and place in clean plastic bag, not on ice.</li>
+      <li>Request witness to remain at scene, if possible.</li>
     </ul>
   `,
   mental: `

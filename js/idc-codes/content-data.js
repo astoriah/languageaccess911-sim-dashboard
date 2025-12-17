@@ -56,8 +56,8 @@ export const contentData = {
       <li>Encourage coughing</li>
     </ul>
   `,
-  "head-neck": `
-    <h3>Head/Neck</h3>
+  "fall-accident": `
+    <h3>Fall/Accident</h3>
     <h4>Vital Points</h4>
     <p><strong>Ask to speak directly to the patient if possible!</strong></p>
     <h5>Medic:</h5>

@@ -44,33 +44,13 @@ export function initLocationForm() {
 
     // Determine which address database to use based on current priority
     let currentDatabase;
-    switch (state.priority) {
-      case 1:
-        currentDatabase = addressDatabases[1];
-        break;
-      case 2:
-        currentDatabase = addressDatabases[1]; // Same as 1
-        break;
-      case 3:
-        currentDatabase = addressDatabases[2]; // Previous 2
-        break;
-      case 4:
-        currentDatabase = addressDatabases[2]; // Previous 2
-        break;
-      case 5:
-        currentDatabase = addressDatabases[3]; // Previous 3
-        break;
-      case 6:
-        currentDatabase = addressDatabases[4]; // Previous 4
-        break;
-      default:
-        currentDatabase = addressDatabases.P;
+    if (state.priority >= 1 && state.priority <= 4) {
+      currentDatabase = addressDatabases[state.priority];
+    } else {
+      currentDatabase = addressDatabases.P;
     }
 
-    console.log(
-      "Using scenario:",
-      state.priority === 1 ? "1" : state.priority === 2 ? "2" : state.priority === 3 ? "3" : state.priority === 4 ? "4" : state.priority === 5 ? "5" : state.priority === 6 ? "6" : "P",
-    );
+    console.log("Using priority:", state.priority, "Database entries:", currentDatabase?.length);
 
     // Filter addresses based on search query
     const filteredAddresses = currentDatabase.filter(function (address) {

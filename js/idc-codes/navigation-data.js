@@ -1,6 +1,6 @@
 /**
  * Navigation Data Configuration
- * 
+ *
  * Sub-navigation items for each main emergency type button.
  * Each item contains an IDC (International Diagnostic Code) and label.
  */
@@ -20,7 +20,7 @@ export const subNavData = {
     { id: "8R2", label: "8R2 - Breathing without difficulty" },
     { id: "8R3", label: "8R3 - No verifiable info from RP" },
   ],
-  "head-neck": [
+  "fall-accident": [
     { id: "12M1", label: "12M1 - Unconscious or not breathing" },
     { id: "12M2", label: "12M2 - Decreased LOC, nonresponsive to verbal or touch" },
     { id: "12R1", label: "12R1 - Disoriented, able to walk/talk" },
@@ -48,7 +48,6 @@ export const subNavData = {
     { id: "14R3", label: "14R3 - Reported O.D., patient denial or unknown substance taken" },
     { id: "14R7", label: "14R7 - Breathing difficulty" },
     { id: "14R8", label: "14R8 - Acute alcohol and/or drug intoxication (responsive)" },
-
   ],
   pregnancy: [
     { id: "15M1", label: "15M1 - Unconscious or not breathing" },
@@ -76,7 +75,11 @@ export const subNavData = {
   ],
   stroke: [
     { id: "18M1", label: "18M1 - Unconscious or not breathing" },
-    { id: "18M2", label: "18M2 - Sudden onset of headache with: slurred speech, blurred/double vision, weakness/paralysis, vomiting" },
+    {
+      id: "18M2",
+      label:
+        "18M2 - Sudden onset of headache with: slurred speech, blurred/double vision, weakness/paralysis, vomiting",
+    },
     { id: "18M3", label: "18M3 - Decreased LOC, non-responsive to verbal or touch" },
     { id: "18R1", label: "18R1 - Unilateral weakness, paralysis" },
     { id: "18R2", label: "18R2 - Weakness, numbness, or unable to stand/walk" },
